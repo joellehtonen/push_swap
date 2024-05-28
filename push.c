@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/28 08:16:05 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/05/27 12:04:21 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/28 11:59:05 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
+#include "push_swap.h"
+
+static void	ft_lstpush_a(t_list **stack_a, t_list **stack_b)
 {
-	if (argc < 2)
-		return (ft_printf("ERROR. Too few arguments."))
-	
+	t_list	*temp
+
+	if (*stack_a == NULL)
+		return ;
+	//stack_a_len--;
+	//stack_b_len++;
+	ft_putstr_fd("pa\n", 1);
 }
