@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:21:24 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/25 15:11:32 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/21 13:39:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	size_t	len;
 
-	if (argc < 2)
-		return (0);
-	if (!check_correct_input(argv))
-		exit(NULL);
-	stack_b = NULL;
-
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	write(fd, s, len);
+	write(fd, "\n", 1);
 }

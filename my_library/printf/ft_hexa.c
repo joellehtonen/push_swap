@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_hexa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:21:24 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/05/02 15:59:51 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/09 09:55:29 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_hexa(unsigned long l, char format)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	char	*base;
+	int		len;
+	int		check;
 
-	if (argc < 2)
-		return (0);
-	if (!check_correct_input(argv))
-		exit(NULL);
-	stack_b = NULL;
-
+	len = 0;
+	if (format == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	if (l >= 16)
+	{
+		check = ft_hexa(l / 16, format);
+		if (check == -1)
+			return (-1);
+		else
+			len += check;
+	}
+	if (ft_character(base[l % 16]) == -1)
+		return (-1);
+	len++;
+	return (len);
 }

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:21:24 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/18 13:09:50 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/21 13:39:43 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	char	a;
 
-	if (argc < 2)
+	a = c;
+	if (s == 0)
 		return (0);
-	if (!check_correct_input(argv))
-		exit(NULL);
-	stack_b = NULL;
-
+	while (*s != '\0' && *s != a)
+	{
+		s++;
+	}
+	if (*s == a)
+		return ((char *)s);
+	return (0);
 }

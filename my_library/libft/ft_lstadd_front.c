@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:21:24 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/26 10:11:10 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/04/26 10:46:42 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
-
-	if (argc < 2)
-		return (0);
-	if (!check_correct_input(argv))
-		exit(NULL);
-	stack_b = NULL;
-
+	if (!new || !lst)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

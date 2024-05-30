@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:21:24 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/25 09:32:43 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/21 13:40:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	char	*pointer;
+	int		len;
+	int		index;
 
-	if (argc < 2)
-		return (0);
-	if (!check_correct_input(argv))
-		exit(NULL);
-	stack_b = NULL;
-
+	if (!s || !f)
+		return (NULL);
+	len = ft_strlen((char *)s);
+	pointer = malloc(sizeof(char) * (len + 1));
+	if (!pointer)
+		return (NULL);
+	index = 0;
+	while (s[index] != '\0')
+	{
+		pointer[index] = f(index, s[index]);
+		index++;
+	}
+	pointer[index] = '\0';
+	return (pointer);
 }
