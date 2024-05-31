@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/30 15:42:39 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:43:00 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	int				content;
 	struct s_list	*next;
 }	t_list;
 

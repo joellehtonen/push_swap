@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:49:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/21 13:36:47 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:52:36 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	long	result;
 	int		sign;
@@ -38,5 +38,5 @@ int	ft_atoi(const char *str)
 			return (0);
 		str++;
 	}
-	return ((int)result);
+	return (result);
 }
