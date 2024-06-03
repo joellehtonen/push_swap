@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order.c                                      :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 09:30:42 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/18 09:49:20 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/21 13:40:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	check_order(t_list *stack_a)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	while (stack_a->next != NULL)
+	size_t	len;
+
+	len = 0;
+	while (src[len] != '\0')
+		len++;
+	if (!dstsize)
+		return (len);
+	while (*src != '\0' && dstsize > 1)
 	{
-		if (stack_a->content > stack_a->next->content)
-			return (0);
-		stack_a = stack_a->next;
+		*dst++ = *src++;
+		dstsize--;
 	}
-	return (1);
+	*dst = '\0';
+	return (len);
 }

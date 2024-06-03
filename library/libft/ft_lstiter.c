@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order.c                                      :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 09:30:42 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/26 14:47:25 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/04/26 15:05:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	check_order(t_list *stack_a)
+static void	print_content(void *content)
 {
-	while (stack_a->next != NULL)
+	printf("%s\n", (char *)content);
+}
+
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (!f || !lst)
+		return ;
+	while (lst != NULL)
 	{
-		if (stack_a->content > stack_a->next->content)
-			return (0);
-		stack_a = stack_a->next;
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (1);
 }

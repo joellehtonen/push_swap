@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order.c                                      :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 09:30:42 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/17 15:55:54 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/21 13:39:08 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	check_order(t_list *stack_a)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	while (stack_a->next != NULL)
+	unsigned char	*d;
+	unsigned char	*s;
+
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	if (dst <= src)
 	{
-		if (stack_a->content > stack_a->next->content)
-			return (0);
-		stack_a = stack_a->next;
+		while (len--)
+		{
+			*d++ = *s++;
+		}
 	}
-	return (1);
+	else
+	{
+		d += len - 1;
+		s += len - 1;
+		while (len--)
+		{
+			*d-- = *s--;
+		}
+	}
+	return (dst);
 }

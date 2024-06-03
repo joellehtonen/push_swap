@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/31 15:53:56 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:51:22 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,26 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		error;
 
+	error = 0;
 	if (argc < 2)
 		return (0);
 	if (!check_input(argv))
-		free_and_exit(NULL, NULL, 1);
+	{
+		error = 1;
+		free_and_exit(NULL, NULL, error);
+	}
 	stack_b = NULL;
-	stack_a = fill_stack(argv, stack_a);
+	stack_a = fill_stack(argv);
 	if (!fill_stack)
-		free_and_exit(stack_a, NULL, 1);
-	check_order(stack_a);
-	sort_stack;
+	{
+		error = 1;
+		free_and_exit(stack_a, NULL, error);
+	}
+	if (check_order(stack_a))
+		return (1);
+	sort_stack(stack_a, stack_b);
 	free_and_exit(stack_a, stack_b, 0);
 	return (1);
 }

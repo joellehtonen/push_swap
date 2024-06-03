@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_stack.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 13:51:06 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/19 12:41:22 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/21 13:36:58 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_list	**fill_stack(char **argv)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int		i;
-	int		number;
-	t_list	*new;
-	t_list	*stack_a;
+	unsigned char	*pointer;
+	size_t			remaining_memory;
+	size_t			index;
 
-	i = 0;
-	number = 0;
-	stack_a = NULL;
-	while (argv[i])
+	if (count != 0)
 	{
-		number = ft_atoi(argv[i]);
-		if (number > INT_MAX || number < INT_MIN)
+		if (size > SIZE_MAX / count)
 			return (NULL);
-		new = ft_lstnew(number);
-		if (!new)
-		{
-			ft_lstclear(stack_a, free_content);
-			return (NULL);
-		}
-		ft_lstadd_back(stack_a, new);
-		i++;
 	}
-	return (stack_a);
+	remaining_memory = (count * size);
+	index = 0;
+	pointer = malloc(count * size);
+	if (pointer == NULL)
+		return (NULL);
+	while (remaining_memory > 0)
+	{
+		pointer[index] = 0;
+		index++;
+		remaining_memory--;
+	}
+	return ((void *)pointer);
 }

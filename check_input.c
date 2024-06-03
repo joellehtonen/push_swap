@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/31 15:06:43 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:40:06 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_if_integer(char *argv)
+int	check_integer(char *argv)
 {
 	int			i;
 	static int	zero;
@@ -56,7 +56,7 @@ int	check_input(char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (!check_if_integer(argv[i]))
+		if (!check_integer(argv[i]))
 			return (0);
 		i++;
 	}

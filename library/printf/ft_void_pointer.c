@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order.c                                      :+:      :+:    :+:   */
+/*   ft_void_pointer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 09:30:42 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/05/02 15:59:56 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/09 09:13:30 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-int	check_order(t_list *stack_a)
+int	ft_void_pointer(void *pointer)
 {
-	while (stack_a->next != NULL)
-	{
-		if (stack_a->content > stack_a->next->content)
-			return (0);
-		stack_a = stack_a->next;
-	}
-	return (1);
+	int		len;
+	char	format;
+	int		check;
+
+	format = 'x';
+	len = 0;
+	check = ft_string("0x");
+	if (check == -1)
+		return (check);
+	else
+		len += check;
+	check = ft_hexa((unsigned long)pointer, format);
+	if (check == -1)
+		return (check);
+	else
+		len += check;
+	return (len);
 }

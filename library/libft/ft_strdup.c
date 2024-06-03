@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 09:30:42 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/04/19 15:59:42 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/21 13:39:48 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
 
-int	check_order(t_list *stack_a)
+char	*ft_strdup(const char *s1)
 {
-	while (stack_a->next != NULL)
+	int		index;
+	int		len;
+	char	*pointer;
+
+	if (!s1)
+		return (NULL);
+	index = 0;
+	len = ft_strlen((char *)s1);
+	pointer = malloc(sizeof(char) * (len + 1));
+	if (pointer == NULL)
+		return (NULL);
+	while (s1[index] != '\0')
 	{
-		if (stack_a->content > stack_a->next->content)
-			return (0);
-		stack_a = stack_a->next;
+		pointer[index] = s1[index];
+		index++;
 	}
-	return (1);
+	pointer[index] = '\0';
+	return (pointer);
 }

@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order.c                                      :+:      :+:    :+:   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 09:30:42 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/05/02 15:59:38 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/05/09 09:53:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-int	check_order(t_list *stack_a)
+int	ft_string(char *s)
 {
-	while (stack_a->next != NULL)
+	int	len;
+
+	if (!s)
 	{
-		if (stack_a->content > stack_a->next->content)
-			return (0);
-		stack_a = stack_a->next;
+		return (write(1, "(null)", 6));
 	}
-	return (1);
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (write(1, s, len));
 }
