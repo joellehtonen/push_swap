@@ -6,16 +6,16 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:24 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:06:51 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:48:40 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_lstrotate(t_list **stack)
+static void	ft_lstrotate(t_stack **stack)
 {
-	t_list	*temp;
-	t_list	*tail;
+	t_stack	*temp;
+	t_stack	*tail;
 
 	temp = *stack;
 	*stack = (*stack)->next;
@@ -24,19 +24,19 @@ static void	ft_lstrotate(t_list **stack)
 	temp->next = NULL;
 }
 
-void	ft_ra(t_list **stack_a)
+void	ft_ra(t_stack **stack_a)
 {
 	ft_lstrotate(stack_a);
 	ft_putstr_fd("ra\n", 1);
 }
 
-void	ft_rb(t_list **stack_b)
+void	ft_rb(t_stack **stack_b)
 {
 	ft_lstrotate(stack_b);
 	ft_putstr_fd("rb\n", 1);
 }
 
-void	ft_rr(t_list **stack_a, t_list **stack_b)
+void	ft_rr(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_lstrotate(stack_a);
 	ft_lstrotate(stack_b);

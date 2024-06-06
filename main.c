@@ -6,18 +6,18 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 13:51:22 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:26:26 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_and_exit(t_list **stack_a, t_list **stack_b, int error)
+void	free_and_exit(t_stack **stack_a, t_stack **stack_b, int error)
 {
 	if (*stack_a != NULL)
-		ft_lstclear(stack_a, free_content);
+		ft_lstclear_int(stack_a);
 	if (*stack_b != NULL)
-		ft_lstclear(stack_b, free_content);
+		ft_lstclear_int(stack_b);
 	if (error == 1)
 	{
 		ft_putstr_fd("Error\n", 1);
@@ -29,28 +29,20 @@ void	free_and_exit(t_list **stack_a, t_list **stack_b, int error)
 
 int	main(int argc, char **argv)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
-	int		error;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-	error = 0;
 	if (argc < 2)
 		return (0);
 	if (!check_input(argv))
-	{
-		error = 1;
-		free_and_exit(NULL, NULL, error);
-	}
+		free_and_exit(NULL, NULL, 1);
 	stack_b = NULL;
 	stack_a = fill_stack(argv);
-	if (!fill_stack)
-	{
-		error = 1;
-		free_and_exit(stack_a, NULL, error);
-	}
+	if (!stack_a)
+		free_and_exit(&stack_a, NULL, 1);
 	if (check_order(stack_a))
 		return (1);
-	sort_stack(stack_a, stack_b);
-	free_and_exit(stack_a, stack_b, 0);
+	sort_stack(&stack_a, &stack_b);
+	free_and_exit(&stack_a, &stack_b, 0);
 	return (1);
 }

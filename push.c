@@ -6,32 +6,32 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:21 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/30 15:52:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:27:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_lstpush(t_list **stack_1, t_list **stack_2)
+static void	ft_lstpush(t_stack **stack_src, t_stack **stack_dst)
 {
-	t_list	*temp_1;
+	t_stack	*temp;
 
-	if (*stack_1 == NULL)
+	if (*stack_src == NULL)
 		return ;
-	temp_1 = *stack_1;
-	*stack_1 = (*stack_1)->next;
-	temp_1->next = *stack_2;
-	*stack_2 = temp_1;
+	temp = *stack_src;
+	*stack_src = (*stack_src)->next;
+	temp->next = *stack_dst;
+	*stack_dst = temp;
 }
 
-void	ft_pa(t_list **stack_a, t_list **stack_b)
-{
-	ft_lstpush(stack_a, stack_b);
-	ft_putstr_fd("sa\n", 1);
-}
-
-void	ft_pb(t_list **stack_b, t_list **stack_a)
+void	ft_pa(t_stack **stack_b, t_stack **stack_a)
 {
 	ft_lstpush(stack_b, stack_a);
-	ft_putstr_fd("sb\n", 1);
+	ft_putstr_fd("pa\n", 1);
+}
+
+void	ft_pb(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_lstpush(stack_a, stack_b);
+	ft_putstr_fd("pb\n", 1);
 }

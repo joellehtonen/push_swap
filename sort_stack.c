@@ -6,53 +6,79 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:36:23 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/03 14:42:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:25:40 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	quick_sort_execute(t_list **stack_a, t_list **stack_b)
+void	sort_3(t_stack *stack_a)
 {
-	int	pivot;
+	int	top;
+	int	middle;
+	int	bottom;
 
-	if ((*stack_a == NULL) || (*stack_a)->next == NULL)
-		return ;
-	if (check_order(stack_a))
-		return ;
-	pivot = (*stack_a)->content;
-	ft_pa(stack_a, stack_b);
-	while (*stack_a != NULL)
+	top = stack_a->content;
+	middle = stack_a->next->content;
+	bottom = stack_a->next->next->content;
+	if ((top < middle) && (middle > bottom) && (bottom > top))
 	{
-		if ((*stack_a)->content < pivot)
-			ft_pa(stack_a, stack_b);
-		else
-			ft_ra(stack_a);
+		ft_rra(stack_a);
+		ft_sa(stack_a);
+	}
+	else if ((top > middle) && (middle < bottom) && (bottom > top))
+		ft_sa(stack_a);
+	else if ((top < middle) && (middle > bottom) && (bottom < top))
+		ft_rra(stack_a);
+	else if ((top > middle) && (middle < bottom) && (bottom < top))
+		ft_ra(stack_a);
+	else if ((top < middle) && (middle < bottom) && (bottom < top))
+	{
+		ft_ra(stack_a);
+		ft_sa(stack_a);
 	}
 }
 
-void	quick_sort_initiate(t_list **stack_a, t_list **stack_b)
+void	sort_4(t_stack *stack_a, t_list *stack_b)
 {
-	quick_sort_execute(stack_a, stack_b);
-	quick_sort_initiate(stack_a, stack_b);
-	while (*stack_b != NULL)
-		ft_pb(stack_b, stack_a);
+	int	b_value;
+
+	ft_pa(stack_a, stack_b);
+	sort_3(stack_a);
+	b_value = stack_b->content;
+	if (b_value > stack_a->content)
+		ft_pa(stack_b, stack_a);
+	else if (b_value > stack_a->next->content)
+	{
+		ft_pa(stack_b, stack_a);
+		ft_sa(stack_a);
+	}
+	else if (b_value > stack_a->next->next->content)
+	{
+		ft_rra(stack_a);
+		ft_pa(stack_b, stack_a);
+		ft_ra(stack_a);
+		ft_ra(stack_a);
+	}
+	else
+	{
+		ft_rra(stack_a);
+		ft_pa(stack_b, stack_a);
+		ft_ra(stack_a);
+	}
 }
 
-void	sort_3(t_list *stack_a)
-{
-	
-}
-
-void	sort_stack(t_list **stack_a, t_list **stack_b)
+void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
 
-	len = ft_lstsize(stack_a);
+	len = ft_lstsize_int(stack_a);
 	if (len == 2)
 		ft_sa(stack_a);
 	else if (len == 3)
 		sort_3(stack_a);
-	else if (len > 3)
-		quick_sort_initiate(stack_a, stack_b);
+	else if (len == 4)
+		sort_4(stack_a, stack_b);
+	else if (len > 4)
+		free_and_exit(&stack_a, NULL, 1);
 }
