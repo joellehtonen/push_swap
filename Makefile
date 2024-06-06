@@ -1,79 +1,40 @@
-NAME = libft.a
-CFLAGS = -Wall -Werror -Wextra
-CC = cc
-AR = ar rcs
-LIB = ranlib
-HEADER = libft.h
-SOURCES = \
-		ft_atoi.c \
-		ft_bzero.c \
-		ft_calloc.c \
-		ft_isalnum.c \
-		ft_isalpha.c \
-		ft_isascii.c \
-		ft_isdigit.c \
-		ft_isprint.c \
-		ft_itoa.c \
-		ft_memchr.c \
-		ft_memcmp.c \
-		ft_memcpy.c \
-		ft_memmove.c \
-		ft_memset.c \
-		ft_putchar_fd.c \
-		ft_putendl_fd.c \
-		ft_putnbr_fd.c \
-		ft_putstr_fd.c \
-		ft_split.c \
-		ft_strchr.c \
-		ft_strdup.c \
-		ft_striteri.c \
-		ft_strjoin.c \
-		ft_strlcat.c \
-		ft_strlcpy.c \
-		ft_strlen.c \
-		ft_strmapi.c \
-		ft_strncmp.c \
-		ft_strnstr.c \
-		ft_strrchr.c \
-		ft_strtrim.c \
-		ft_substr.c \
-		ft_tolower.c \
-		ft_toupper.c
-BONUS_SOURCES = \
-		ft_lstadd_back_bonus.c \
-		ft_lstadd_front_bonus.c \
-		ft_lstclear_bonus.c \
-		ft_lstdelone_bonus.c \
-		ft_lstiter_bonus.c \
-		ft_lstlast_bonus.c \
-		ft_lstmap_bonus.c \
-		ft_lstnew_bonus.c \
-		ft_lstsize_bonus.c
+NAME = push_swap
+CFLAGS = -Wall -Wextra -Werror -g
+CC = gcc
+LIBFT_DIR = ./library/libft/
+LIBFT = $(LIBFT_DIR)/libft.a
+SOURCES =	main.c \
+			check_input.c \
+			check_order.c \
+			fill_stack.c \
+			lst_functions.c \
+			push.c \
+			reverse_rotate.c \
+			rotate.c \
+			swap.c \
+			sort_stack.c
 OBJECTS = $(SOURCES:.c=.o)
-BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
+HEADER = push_swap.h
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJECTS)
-	$(AR) $(NAME) $(OBJECTS)
-	$(LIB) $(NAME)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -L$(LIBFT_DIR) -lft
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -I $(HEADER) $< -o $@
 
-bonus:	.bonus
-
-.bonus:	$(BONUS_OBJECTS)
-		@touch .bonus
-		$(AR) $(NAME) $(BONUS_OBJECTS)
-		$(LIB) $(NAME)
-
 clean: 
-	rm -f $(OBJECTS) $(BONUS_OBJECTS) .bonus
+	rm -f $(OBJECTS)
+	$(MAKE) -C $(LIBFT_DIR) clean\
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

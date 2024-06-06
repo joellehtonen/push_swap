@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/05 12:48:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:39:53 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_lstreverse_rotate(t_stack **stack)
 	t_stack	*head;
 	t_stack	*new_tail;
 
-	head = ft_lstlast(*stack);
+	head = ft_lstlast_int(*stack);
 	new_tail = *stack;
 	while (new_tail->next->next != NULL)
 		new_tail = new_tail->next;
@@ -28,19 +28,19 @@ static void	ft_lstreverse_rotate(t_stack **stack)
 
 void	ft_rra(t_stack **stack_a)
 {
-	ft_lstrotate(stack_a);
+	ft_lstreverse_rotate(stack_a);
 	ft_putstr_fd("rra\n", 1);
 }
 
 void	ft_rrb(t_stack **stack_b)
 {
-	ft_lstrotate(stack_b);
+	ft_lstreverse_rotate(stack_b);
 	ft_putstr_fd("rrb\n", 1);
 }
 
 void	ft_rrr(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_lstrotate(stack_a);
-	ft_lstrotate(stack_b);
+	ft_lstreverse_rotate(stack_a);
+	ft_lstreverse_rotate(stack_b);
 	ft_putstr_fd("rrr\n", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:24 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/05 12:48:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:40:11 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_lstrotate(t_stack **stack)
 
 	temp = *stack;
 	*stack = (*stack)->next;
-	tail = ft_lstlast(*stack);
+	tail = ft_lstlast_int(*stack);
 	tail->next = temp;
 	temp->next = NULL;
 }

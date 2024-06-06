@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:02:36 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/06 09:06:54 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:56:35 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,20 @@ void	ft_lstclear_int(t_stack **lst)
 	if (!lst || !(*lst))
 		return ;
 	ft_lstclear_int(&(*lst)->next);
-	free((*lst)->content);
 	free(*lst);
 	*lst = NULL;
 }
 
-t_stack	*ft_lstnew_int(void *content)
+t_stack	*ft_lstlast_int(t_stack *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
+
+t_stack	*ft_lstnew_int(int content)
 {
 	t_stack	*new;
 

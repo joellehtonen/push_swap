@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/06 11:25:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:51:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "library/libft/libft.h"
 # include "library/printf/ft_printf.h"
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -36,7 +37,8 @@ void	ft_rrr(t_stack **stack_a, t_stack **stack_b);
 void	free_and_exit(t_stack **stack_a, t_stack **stack_b, int error);
 void	ft_lstadd_back_int(t_stack **lst, t_stack *new);
 void	ft_lstclear_int(t_stack **lst);
-t_stack	*ft_lstnew_int(void *content);
+t_stack	*ft_lstlast_int(t_stack *lst);
+t_stack	*ft_lstnew_int(int content);
 int		ft_lstsize_int(t_stack *lst);
 int		check_integer(char *argv);
 int		check_min_max(char *argv);
@@ -45,5 +47,6 @@ int		check_input(char **argv);
 int		check_order(t_stack *stack_a);
 t_stack	*fill_stack(char **argv);
 void	sort_stack(t_stack **stack_a, t_stack **stack_b);
+void	print_stack(t_stack *stack_a);
 
 #endif

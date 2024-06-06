@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_stack.c                                       :+:      :+:    :+:   */
+/*   sorter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/06 14:51:46 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/06/06 15:57:36 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/06/06 15:57:36 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*fill_stack(char **argv)
+void	sorter(t_stack stack_a, t_stack stack_b)
 {
-	int		i;
-	int		number;
-	t_stack	*new;
-	t_stack	*stack_a;
 
-	i = 1;
-	number = 0;
-	stack_a = NULL;
-	while (argv[i])
-	{
-		number = ft_atoi(argv[i]);
-		new = ft_lstnew_int(number);
-		if (!new)
-		{
-			ft_lstclear_int(&stack_a);
-			return (NULL);
-		}
-		ft_lstadd_back_int(&stack_a, new);
-		i++;
-	}
-	return (stack_a);
 }

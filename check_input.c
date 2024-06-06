@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/06 09:29:30 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:19:33 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,17 @@ int	check_integer(char *argv)
 
 int	check_min_max(char *argv)
 {
-	int	i;
 	int	result;
 
 	result = 1;
-	while (argv[i])
+	while (*argv++)
 	{
-		if (ft_strlen(argv[i]) >= 10)
+		if (ft_strlen(argv) >= 10)
 		{
-			result = ft_atoi(argv[i]);
+			result = ft_atoi(argv);
 			if (result == 0 || result == -1)
 				return (0);
 		}
-		i++;
 	}
 	return (1);
 }

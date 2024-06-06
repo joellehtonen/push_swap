@@ -14,6 +14,8 @@ do I need to keep len for any purpose?
 split to cut up a big argument within ""
 what if there both numbers and a string?
 
+incorpote your own ft_printf (adjust makefile)
+
 MAYBE change lstclear to use while loops instead of recursion (possible problem with stack overflow if recursion goes too deep)
 (check first if this is actually a problem with 5000 or more nodes)
 
@@ -32,4 +34,18 @@ sort-three: all possible cases
 = ra
 3, 2, 1
 = ra (213), sa
+
+sort 4
+stack_a		stack_b
+1			4
+2
+3
+
+PA
+4
+1
+2
+3
+
+
 
