@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:36:23 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/06 15:57:32 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:58:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 	else if (len == 4)
 		sort_4(stack_a, stack_b);
 	else
-		sorter(stack_a, stack_b);
+		quick_sort(stack_a, stack_b);
 }
