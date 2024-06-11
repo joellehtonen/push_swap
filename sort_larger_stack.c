@@ -6,11 +6,16 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/10 17:12:34 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:41:18 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	final_push(t_stack **stack_a, t_stack **stack_b)
+{
+
+}
 
 void	rotation_chooser(t_stack **sa, t_stack **sb, int index, int len)
 {
