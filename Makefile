@@ -6,13 +6,16 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SOURCES =	main.c \
 			check_input.c \
 			check_order.c \
+			cost_and_index.c \
 			fill_stack.c \
+			final_push.c \
 			lst_functions.c \
 			push.c \
 			reverse_rotate.c \
 			rotate.c \
 			swap.c \
-			sort_stack.c
+			sort_chooser.c \
+			sort_larger_stack.c
 OBJECTS = $(SOURCES:.c=.o)
 HEADER = push_swap.h
 

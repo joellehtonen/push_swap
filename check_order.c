@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/11 09:41:44 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:01:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	check_content_order(t_stack *stack_a)
 	}
 	return (1);
 }
-//MODIFY THIS
+
 int	check_target_order(t_stack *stack_a)
 {
 	while (stack_a->next != NULL)
 	{
-		if (stack_a->content > stack_a->next->content)
+		if (stack_a->target > stack_a->next->target)
 			return (0);
 		stack_a = stack_a->next;
 	}
@@ -41,9 +41,9 @@ void	assign_target_value(t_stack *stack_a)
 	int		len;
 	int		target;
 
-	len = ft_lstsize(stack_a);
+	len = ft_lstsize_int(stack_a);
 	target = 1;
-	while (len != target)
+	while (target <= len)
 	{
 		check = stack_a;
 		lowest = NULL;
@@ -58,17 +58,3 @@ void	assign_target_value(t_stack *stack_a)
 		target++;
 	}
 }
-
-
-
-
-// int	check_desc_order(t_stack *stack_b)
-// {
-// 	while (stack_b->next != NULL)
-// 	{
-// 		if (stack_b->content < stack_b->next->content)
-// 			return (0);
-// 		stack_b = stack_b->next;
-// 	}
-// 	return (1);
-// }

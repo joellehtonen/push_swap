@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/10 15:46:05 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:18:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*compare;
 
 	check = stack_a;
-	len = ft_lstsize(stack_a);
+	len = ft_lstsize_int(stack_a);
 	while (check)
 	{
 		cost = 0;
@@ -67,6 +67,7 @@ void	assign_index(t_stack *stack)
 	t_stack	*check;
 	int		index;
 
+	check = stack;
 	index = 1;
 	while (check)
 	{

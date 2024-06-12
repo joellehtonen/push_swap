@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:02:36 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/10 10:52:11 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/12 10:25:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,17 @@ t_stack	*ft_lstnew_int(int content)
 	new->index = 0;
 	new->next = NULL;
 	return (new);
+}
+
+int	ft_lstsize_int(t_stack *lst)
+{
+	int	count;
+
+	count = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		count++;
+	}
+	return (count);
 }
