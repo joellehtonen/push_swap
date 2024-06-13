@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 11:18:34 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:02:30 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ int	find_lowest_cost(t_stack *stack_a)
 void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 {
 	int		cost;
-	int		len;
+	int		len_a;
+	int		len_b;
 	t_stack	*check;
 	t_stack	*compare;
 
 	check = stack_a;
-	len = ft_lstsize_int(stack_a);
+	len_a = ft_lstsize_int(stack_a);
+	len_b = ft_lstsize_int(stack_b);
 	while (check)
 	{
 		cost = 0;
@@ -51,15 +53,16 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 			compare = compare->next;
 			cost++;
 		}
-		check->cost_b = cost;
-		if (check->index < len / 2)
+		if (cost <= len_b / 2)
+			check->cost_b = cost;
+		else
+			check->cost_b = len_b - cost + 1;
+		if (check->index <= len_a / 2)
 			check->cost_a = check->index - 1;
 		else
-			check->cost_a = len - check->index + 1;
+			check->cost_a = len_a - check->index + 1;
 		check = check->next;
 	}
-	//optimize this later to only do a part of list, in case the list is very long
-	//also add reverse_rotate
 }
 
 void	assign_index(t_stack *stack)

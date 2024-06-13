@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 16:33:27 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:05:19 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,14 @@ void		assign_cost(t_stack *stack_a, t_stack *stack_b);
 void		assign_index(t_stack *stack);
 int			find_target_value(t_stack *stack_a, t_stack *stack_b);
 void		final_rotate(t_stack **stack_a);
+void		rotate_max_up(t_stack **stack_b);
 void		final_push(t_stack **stack_a, t_stack **stack_b);
 t_stack		*fill_stack(char **argv);
 void		sort_3(t_stack **stack_a);
 void		sort_4(t_stack **stack_a, t_stack **stack_b);
 void		sort_chooser(t_stack **stack_a, t_stack **stack_b);
 void		rotation_chooser(t_stack **sa, t_stack **sb, int index, int len);
+int			find_next(t_stack *stack_b);
 void		node_to_right_place(t_stack **stack_b, int len);
 void		sort_larger_stack(t_stack **stack_a, t_stack **stack_b);
 void		print_stack(t_stack *stack_a);

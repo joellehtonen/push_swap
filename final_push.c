@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 17:03:36 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:13:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,36 @@ int	find_target_value(t_stack *stack_a, t_stack *stack_b)
 	while (check->target != stack_b->target + 1)
 		check = check->next;
 	return (check->index);
+}
+
+void	rotate_max_up(t_stack **stack_b)
+{
+	t_stack	*check;
+	int		len;
+
+	check = *stack_b;
+	len = ft_lstsize_int(*stack_b);
+	assign_index(*stack_b);
+	while (check->next != NULL && check->target > check->next->target)
+		check = check->next;
+	if (check->next == NULL)
+		return ;
+	else
+	{
+		while (check->index != 0 && check->index != len)
+		{
+			if (check->index > len / 2)
+			{
+				ft_rrb(stack_b);
+				check->index++;
+			}
+			else
+			{
+				ft_rb(stack_b);
+				check->index--;
+			}
+		}
+	}
 }
 
 void	final_rotate(t_stack **stack_a)
@@ -51,7 +81,7 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 	len_a = 3;
 	len_b = ft_lstsize_int(*stack_b);
 	max = len_a + len_b;
-	while (stack_b)
+	while (*stack_b)
 	{
 		if (((*stack_a)->target == (*stack_b)->target + 1)
 			|| (*stack_b)->target == max)
