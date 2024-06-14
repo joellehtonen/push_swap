@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/07 15:03:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:47:44 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_lstreverse_rotate(t_stack **stack)
 	t_stack	*new_tail;
 
 	if (*stack == NULL || (*stack)->next == NULL)
-        return ;
+		return ;
 	head = ft_lstlast_int(*stack);
 	new_tail = *stack;
 	while (new_tail->next->next != NULL)

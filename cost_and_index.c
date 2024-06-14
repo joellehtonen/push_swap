@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/13 16:02:30 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:20:56 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,67 @@ int	find_lowest_cost(t_stack *stack_a)
 	return (index);
 }
 
+int	find_next(t_stack *stack_b, int ref)
+{
+	t_stack	*check;
+	t_stack	*smaller;
+	t_stack	*biggest;
+
+	check = stack_b;
+	smaller = NULL;
+	biggest = NULL;
+	while (check)
+	{
+		if (check->content < ref && (smaller == NULL || check->content > smaller->content))
+			smaller = check;
+		if (biggest == NULL || check->content > biggest->content)
+			biggest = check;
+		check = check->next;
+	}
+	if (smaller == NULL)
+		return (biggest->index);
+	return (smaller->index);
+}
+
+int	find_cost_b(t_stack *stack_b, int ref)
+{
+	t_stack	*compare;
+	int		cost;
+	int		next_index;
+
+	cost = 0;
+	compare = stack_b;
+	assign_index(stack_b);
+	next_index = find_next(stack_b, ref);
+	cost = next_index - 1;
+	return (cost);
+}
+
 void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 {
 	int		cost;
 	int		len_a;
 	int		len_b;
+	int		ref;
 	t_stack	*check;
-	t_stack	*compare;
 
+	cost = 0;
 	check = stack_a;
-	len_a = ft_lstsize_int(stack_a);
 	len_b = ft_lstsize_int(stack_b);
+	len_a = ft_lstsize_int(stack_a);
 	while (check)
 	{
-		cost = 0;
-		compare = stack_b;
-		while (compare != NULL && check->target < compare->target)
-		{
-			compare = compare->next;
-			cost++;
-		}
+		ref = check->content;
+		cost = find_cost_b(stack_b, ref);
 		if (cost <= len_b / 2)
 			check->cost_b = cost;
 		else
-			check->cost_b = len_b - cost + 1;
+			check->cost_b = len_b - cost;
 		if (check->index <= len_a / 2)
 			check->cost_a = check->index - 1;
 		else
 			check->cost_a = len_a - check->index + 1;
+		//printf("assigned cost_a of %d and cost_b of %d to the content of %d\n", check->cost_a, check->cost_b, check->content);
 		check = check->next;
 	}
 }

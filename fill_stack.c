@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/06 14:51:46 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:00:22 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ t_stack	*fill_stack(char **argv)
 	stack_a = NULL;
 	while (argv[i])
 	{
-		number = ft_atoi(argv[i]);
+		number = ft_atoll(argv[i]);
+		if (number > INT_MAX || number < INT_MIN)
+			free_and_exit(&stack_a, NULL, 1);
 		new = ft_lstnew_int(number);
 		if (!new)
 		{

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/13 16:13:15 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:26:45 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	rotate_max_up(t_stack **stack_b)
 	t_stack	*check;
 	int		len;
 
+	if (check_content_order(*stack_b))
+		return ;
 	check = *stack_b;
 	len = ft_lstsize_int(*stack_b);
 	assign_index(*stack_b);
@@ -57,6 +59,8 @@ void	final_rotate(t_stack **stack_a)
 	t_stack	*check;
 	int		len;
 
+	if (check_content_order(*stack_a))
+		return ;
 	check = *stack_a;
 	len = ft_lstsize_int(*stack_a);
 	assign_index(*stack_a);
@@ -83,8 +87,7 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 	max = len_a + len_b;
 	while (*stack_b)
 	{
-		if (((*stack_a)->target == (*stack_b)->target + 1)
-			|| (*stack_b)->target == max)
+		if (((*stack_a)->target == (*stack_b)->target + 1) || (*stack_b)->target == max)
 		{
 			ft_pa(stack_b, stack_a);
 			len_a++;
@@ -97,13 +100,13 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 			{
 				if (target_index < len_a / 2)
 				{
-					ft_rra(stack_a);
-					target_index++;
+					ft_ra(stack_a);
+					target_index--;
 				}
 				else
 				{
-					ft_ra(stack_a);
-					target_index--;
+					ft_rra(stack_a);
+					target_index++;
 				}
 			}
 		}
