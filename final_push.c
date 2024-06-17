@@ -6,27 +6,19 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/14 15:26:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:43:47 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_target_value(t_stack *stack_a, t_stack *stack_b)
-{
-	t_stack	*check;
-
-	check = stack_a;
-	while (check->target != stack_b->target + 1)
-		check = check->next;
-	return (check->index);
-}
-
 void	rotate_max_up(t_stack **stack_b)
 {
 	t_stack	*check;
 	int		len;
+	int		count;
 
+	count = 0;
 	if (check_content_order(*stack_b))
 		return ;
 	check = *stack_b;
@@ -44,14 +36,17 @@ void	rotate_max_up(t_stack **stack_b)
 			{
 				ft_rrb(stack_b);
 				check->index++;
+				count++;
 			}
 			else
 			{
 				ft_rb(stack_b);
 				check->index--;
+				count++;
 			}
 		}
 	}
+	printf("max up rotations: %d\n", count);
 }
 
 void	final_rotate(t_stack **stack_a)
@@ -82,7 +77,7 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 	int	len_b;
 	int	max;
 
-	len_a = 3;
+	len_a = ft_lstsize_int(*stack_a);
 	len_b = ft_lstsize_int(*stack_b);
 	max = len_a + len_b;
 	while (*stack_b)
@@ -95,8 +90,8 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 		else
 		{
 			assign_index(*stack_a);
-			target_index = find_target_value(*stack_a, *stack_b);
-			while (target_index != 1 && target_index != len_a + 1)
+			target_index = find_next(*stack_a, (*stack_b)->content);
+			while (target_index != 1 && target_index != len_a)
 			{
 				if (target_index < len_a / 2)
 				{

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/14 16:24:06 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:59:00 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	rotate_a_b(t_stack **sa, t_stack **sb, int index, int len_a)
 		check = check->next;
 	len_b = ft_lstsize_int(*sb);
 	next_index = find_next(*sb, check->content);
-	//printf("chosen value is %d\n", check->content);
-	//printf("its index is %d\n", check->index);
-	if (check->cost_a > 0 && check->cost_b > 0)
+	while (check->cost_a > 0 && check->cost_b > 0)
 	{
 		if (check->index > len_a / 2 && next_index > len_b / 2)
 		{
@@ -39,8 +37,10 @@ void	rotate_a_b(t_stack **sa, t_stack **sb, int index, int len_a)
 			check->cost_a--;
 			check->cost_b--;
 		}
+		else
+			break ;
 	}
-	if (check->cost_a > 0)
+	while (check->cost_a > 0)
 	{
 		if (check->index > len_a / 2)
 			ft_rra(sa);
@@ -79,8 +79,6 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 	assign_target_value(*stack_a);
 	ft_pb(stack_a, stack_b);
 	ft_pb(stack_a, stack_b);
-	if (check_content_order(*stack_b))
-		ft_sb(stack_b);
 	len = ft_lstsize_int(*stack_a);
 	while (len > 3)
 	{
@@ -96,7 +94,10 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 			break ;
 	}
 	sort_3(stack_a);
+	//printf("sorting done\n");
 	rotate_max_up(stack_b);
 	final_push(stack_a, stack_b);
+	//printf("pushing done\n");
+	//print_stack(*stack_a);
 	final_rotate(stack_a);
 }

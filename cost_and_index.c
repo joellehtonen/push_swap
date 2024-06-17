@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/14 16:20:56 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:00:51 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	find_lowest_cost(t_stack *stack_a)
 	return (index);
 }
 
-int	find_next(t_stack *stack_b, int ref)
+int	find_next(t_stack *stack, int ref)
 {
 	t_stack	*check;
 	t_stack	*smaller;
 	t_stack	*biggest;
 
-	check = stack_b;
+	check = stack;
 	smaller = NULL;
 	biggest = NULL;
 	while (check)
@@ -93,6 +93,8 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 			check->cost_a = check->index - 1;
 		else
 			check->cost_a = len_a - check->index + 1;
+		//if (len_a > 5 && (check->target == 1 || check->target == 2 || check->target == 3))
+		//	check->cost_a = 999;
 		//printf("assigned cost_a of %d and cost_b of %d to the content of %d\n", check->cost_a, check->cost_b, check->content);
 		check = check->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 17:01:07 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:45:11 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,13 @@ void	assign_target_value(t_stack *stack_a)
 		target++;
 	}
 }
+
+// int	upper_lower(t_stack *stack)
+// {
+// 	t_stack *check;
+// 	int 	len;
+
+// 	check = stack;
+// 	len = ft_lstsize_int(stack);
+
+// }
