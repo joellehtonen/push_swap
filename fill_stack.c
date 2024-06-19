@@ -6,44 +6,71 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/17 16:29:03 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:59:47 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	split_arg(int argc, char **argv)
+long long	ft_atoll(const char *str)
 {
-	char		**splitted;
 	long long	result;
-	int			i;
+	int			sign;
 
-	i = 1;
-	if (argc == 2)
-		splitted = ft_split(argv[1], " ");
-	result = ft_atoll(splitted[i]);
-		if (result > INT_MAX || result < INT_MIN)
-			free_and_exit(&argv, NULL, 1);
+	sign = 1;
+	result = 0;
+	while (*str == '\t' || *str == '\n' || *str == '\v'
+		|| *str == '\f' || *str == '\r' || *str == ' ')
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0') * sign;
+		if (result < 0 && sign > 0)
+			return (-1);
+		else if (result > 0 && sign < 0)
+			return (0);
+		str++;
+	}
+	return (result);
 }
 
-t_stack	*fill_stack(int argc, char **argv)
+void	check_min_max(t_stack **stack_a, long long number)
 {
-	int		i;
-	t_stack	*new;
-	t_stack	*stack_a;
+	if (number > INT_MAX || number < INT_MIN)
+		free_and_exit(stack_a, NULL, 1);
+	return ;
+}
+
+t_stack	*fill_stack(int argc, char **argv, t_stack **stack_a)
+{
+	int			i;
+	long long	number;
+	char		**result;
+	t_stack		*new;
 
 	i = 1;
-	stack_a = NULL;
-	while (argv[i])
+	number = 0;
+	if (argc == 2)
 	{
-		new = ft_lstnew_int(argv[i]);
-		if (!new)
-		{
-			ft_lstclear_int(&stack_a);
-			return (NULL);
-		}
-		ft_lstadd_back_int(&stack_a, new);
+		result = ft_split(argv[i], ' ');
+		i = 0;
+	}
+	else
+		result = argv;
+	if (!check_input(result))
+		free_and_exit(NULL, NULL, 1);
+	while (result[i])
+	{
+		number = ft_atoll(result[i]);
+		new = ft_lstnew_int(number);
+		ft_lstadd_back_int(stack_a, new);
 		i++;
 	}
-	return (stack_a);
+	return (*stack_a);
 }

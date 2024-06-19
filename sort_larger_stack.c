@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/17 14:59:00 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:33:39 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	rotate_a_b(t_stack **sa, t_stack **sb, int index, int len_a)
 	while (index-- > 1)
 		check = check->next;
 	len_b = ft_lstsize_int(*sb);
-	next_index = find_next(*sb, check->content);
+	next_index = find_next_smaller(*sb, check->content);
 	while (check->cost_a > 0 && check->cost_b > 0)
 	{
 		if (check->index > len_a / 2 && next_index > len_b / 2)
@@ -60,7 +60,7 @@ void	node_to_right_place(t_stack **stack_a, t_stack **stack_b)
 	check = (*stack_a);
 	ref = check->content;
 	len = ft_lstsize_int(*stack_b);
-	next = find_next(*stack_b, ref);
+	next = find_next_smaller(*stack_b, ref);
 	while (check->cost_b > 0)
 	{
 		if (next > len / 2 + (len % 2))

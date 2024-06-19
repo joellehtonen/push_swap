@@ -6,39 +6,11 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/07 09:42:59 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:45:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-long long	ft_atoll(const char *str)
-{
-	long long	result;
-	int			sign;
-
-	sign = 1;
-	result = 0;
-	while (*str == '\t' || *str == '\n' || *str == '\v'
-		|| *str == '\f' || *str == '\r' || *str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0') * sign;
-		if (result < 0 && sign > 0)
-			return (-1);
-		else if (result > 0 && sign < 0)
-			return (0);
-		str++;
-	}
-	return (result);
-}
 
 int	check_integer(char *argv)
 {

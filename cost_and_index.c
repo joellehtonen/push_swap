@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/17 14:00:51 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:29:09 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,30 @@ int	find_lowest_cost(t_stack *stack_a)
 	return (index);
 }
 
-int	find_next(t_stack *stack, int ref)
+int	find_next_bigger(t_stack *stack_b, int ref)
+{
+	t_stack	*check;
+	t_stack	*bigger;
+	t_stack *smallest;
+
+	check = stack_b;
+	bigger = NULL;
+	smallest = NULL;
+	//printf("ref value is %d\n", ref);
+	while (check)
+	{
+		if (check->content > ref && (bigger == NULL || check->content < bigger->content))
+			bigger = check;
+		if (smallest == NULL || check->content > smallest->content)
+            smallest = check;
+		check = check->next;
+	}
+	if (bigger == NULL)
+		return (smallest->index);
+	return (bigger->index);
+}
+
+int	find_next_smaller(t_stack *stack, int ref)
 {
 	t_stack	*check;
 	t_stack	*smaller;
@@ -64,7 +87,7 @@ int	find_cost_b(t_stack *stack_b, int ref)
 	cost = 0;
 	compare = stack_b;
 	assign_index(stack_b);
-	next_index = find_next(stack_b, ref);
+	next_index = find_next_smaller(stack_b, ref);
 	cost = next_index - 1;
 	return (cost);
 }
@@ -97,20 +120,5 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 		//	check->cost_a = 999;
 		//printf("assigned cost_a of %d and cost_b of %d to the content of %d\n", check->cost_a, check->cost_b, check->content);
 		check = check->next;
-	}
-}
-
-void	assign_index(t_stack *stack)
-{
-	t_stack	*check;
-	int		index;
-
-	check = stack;
-	index = 1;
-	while (check)
-	{
-		check->index = index;
-		check = check->next;
-		index++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/17 13:45:11 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:29:17 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,17 @@ void	assign_target_value(t_stack *stack_a)
 	}
 }
 
-// int	upper_lower(t_stack *stack)
-// {
-// 	t_stack *check;
-// 	int 	len;
+void	assign_index(t_stack *stack)
+{
+	t_stack	*check;
+	int		index;
 
-// 	check = stack;
-// 	len = ft_lstsize_int(stack);
-
-// }
+	check = stack;
+	index = 1;
+	while (check)
+	{
+		check->index = index;
+		check = check->next;
+		index++;
+	}
+}

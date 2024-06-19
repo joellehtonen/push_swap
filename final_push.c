@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/17 14:43:47 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:27:30 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 		else
 		{
 			assign_index(*stack_a);
-			target_index = find_next(*stack_a, (*stack_b)->content);
-			while (target_index != 1 && target_index != len_a)
+			target_index = find_next_bigger(*stack_a, (*stack_b)->content);
+			while (target_index != 1 && target_index != len_a + 1)
 			{
-				if (target_index < len_a / 2)
+				if (target_index <= len_a / 2 + (len_a % 2))
 				{
 					ft_ra(stack_a);
 					target_index--;
@@ -106,4 +106,7 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 			}
 		}
 	}
+	// while (target_index != 1 && target_index != len_a)
+	// 		{
+	// 			if (target_index < len_a / 2)
 }

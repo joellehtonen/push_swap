@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/17 16:24:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:44:01 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,15 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	split_arg(argc, argv);
-	if (!check_input(argv))
-		free_and_exit(NULL, NULL, 1);
 	stack_b = NULL;
-	stack_a = fill_stack(argc, argv);
+	stack_a = NULL;
+	stack_a = fill_stack(argc, argv, &stack_a);
 	if (!stack_a)
 		free_and_exit(&stack_a, NULL, 1);
 	if (check_content_order(stack_a))
 		free_and_exit(&stack_a, NULL, 0);
 	sort_chooser(&stack_a, &stack_b);
-	//print_stack(stack_a);
+	print_stack(stack_a);
 	free_and_exit(&stack_a, &stack_b, 0);
 	return (1);
 }
