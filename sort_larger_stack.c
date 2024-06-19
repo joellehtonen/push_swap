@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_larger_stack.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:33:39 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:23:14 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 	while (len > 3)
 	{
 		assign_index(*stack_a);
+		//longest_desc_order(*stack_a);
 		assign_cost(*stack_a, *stack_b);
 		index = find_lowest_cost(*stack_a);
 		rotate_a_b(stack_a, stack_b, index, len);

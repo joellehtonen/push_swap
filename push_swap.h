@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:59:58 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:25:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_stack
 	int				index;
 	int				cost_a;
 	int				cost_b;
+	int				moveable;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -65,6 +66,8 @@ int			find_cost_b(t_stack *stack_b, int ref);
 void		assign_cost(t_stack *stack_a, t_stack *stack_b);
 void		assign_index(t_stack *stack);
 int			find_target_value(t_stack *stack_a, t_stack *stack_b);
+void    	longest_desc_order(t_stack *stack_a);
+void    	set_moveable_zero(t_stack *start, int longest);
 //sorting functions
 void		sort_chooser(t_stack **stack_a, t_stack **stack_b);
 void		sort_3(t_stack **stack_a);

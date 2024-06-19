@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cost_and_index.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:29:09 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:51:11 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	find_lowest_cost(t_stack *stack_a)
 	check = stack_a;
 	while (check)
 	{
-		if ((check->cost_a + check->cost_b) < lowest_cost)
+		if ((check->cost_a + check->cost_b) < lowest_cost && check->moveable == 1)
 		{
 			lowest_cost = (check->cost_a + check->cost_b);
 			index = check->index;
@@ -42,7 +42,6 @@ int	find_next_bigger(t_stack *stack_b, int ref)
 	check = stack_b;
 	bigger = NULL;
 	smallest = NULL;
-	//printf("ref value is %d\n", ref);
 	while (check)
 	{
 		if (check->content > ref && (bigger == NULL || check->content < bigger->content))
@@ -80,12 +79,10 @@ int	find_next_smaller(t_stack *stack, int ref)
 
 int	find_cost_b(t_stack *stack_b, int ref)
 {
-	t_stack	*compare;
 	int		cost;
 	int		next_index;
 
 	cost = 0;
-	compare = stack_b;
 	assign_index(stack_b);
 	next_index = find_next_smaller(stack_b, ref);
 	cost = next_index - 1;

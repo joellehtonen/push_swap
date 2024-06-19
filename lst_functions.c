@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:02:36 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 10:25:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:38:18 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ t_stack	*ft_lstnew_int(int content)
 	new->target = 0;
 	new->index = 0;
 	new->next = NULL;
+	new->cost_a = 0;
+	new->cost_b = 0;
+	new->moveable = 1;
 	return (new);
 }
 

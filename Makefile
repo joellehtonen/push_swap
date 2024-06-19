@@ -9,6 +9,7 @@ SOURCES =	main.c \
 			cost_and_index.c \
 			fill_stack.c \
 			final_push.c \
+			longest_desc.c \
 			lst_functions.c \
 			push.c \
 			reverse_rotate.c \
@@ -27,12 +28,12 @@ $(LIBFT):
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -L$(LIBFT_DIR) -lft
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -I $(HEADER) $< -o $@
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
 	rm -f $(OBJECTS)
-	$(MAKE) -C $(LIBFT_DIR) clean\
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)

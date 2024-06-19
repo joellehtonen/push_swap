@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:59:47 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:37:41 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	check_min_max(t_stack **stack_a, long long number)
 {
 	if (number > INT_MAX || number < INT_MIN)
 		free_and_exit(stack_a, NULL, 1);
-	return ;
 }
 
 t_stack	*fill_stack(int argc, char **argv, t_stack **stack_a)

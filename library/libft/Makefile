@@ -22,7 +22,7 @@ SOURCES = \
 		ft_lstlast.c \
 		ft_lstmap.c \
 		ft_lstnew.c \
-		ft_lstsize.c
+		ft_lstsize.c \
 		ft_memchr.c \
 		ft_memcmp.c \
 		ft_memcpy.c \
@@ -56,8 +56,8 @@ $(NAME): $(OBJECTS)
 	$(AR) $(NAME) $(OBJECTS)
 	$(LIB) $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -I $(HEADER) $< -o $@
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
 	rm -f $(OBJECTS)

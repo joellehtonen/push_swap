@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_order.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:29:17 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:57:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	check_target_order(t_stack *stack_a)
 
 void	assign_target_value(t_stack *stack_a)
 {
-	t_stack	*check;
 	t_stack	*lowest;
 	int		len;
 	int		target;
@@ -45,14 +44,13 @@ void	assign_target_value(t_stack *stack_a)
 	target = 1;
 	while (target <= len)
 	{
-		check = stack_a;
 		lowest = NULL;
-		while (check)
+		while (stack_a)
 		{
-			if ((lowest == NULL || check->content < lowest->content)
-				&& (check->target == 0))
-				lowest = check;
-			check = check->next;
+			if ((lowest == NULL || stack_a->content < lowest->content)
+				&& (stack_a->target == 0))
+				lowest = stack_a;
+			stack_a = stack_a->next;
 		}
 		lowest->target = target;
 		target++;
