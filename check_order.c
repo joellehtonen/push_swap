@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 16:25:03 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:16:16 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int check_first_half(t_stack *stack, int ref)
 	int	len;
 
 	len = ft_lstsize_int(stack);
-	if (ref > len / 2 + (len % 2))
-		return (0);
-	else
+	if (ref < len / 2 + (len % 2))
 		return (1);
+	else
+		return (0);
 }
 

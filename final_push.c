@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 11:07:15 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:20:45 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ void	final_rotate(t_stack **stack_a)
 		check = check->next;
 	while ((*stack_a)->target != 1)
 	{
+		//if (check_first_half(*stack_a, check->index))
 		if (check->index > len / 2)
-			ft_rra(stack_a);
-		else
 			ft_ra(stack_a);
+		else
+			ft_rra(stack_a);
 	}
 }
 
@@ -93,6 +94,7 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 			while (target_index != 1 && target_index != len_a + 1)
 			{
 				if (target_index <= len_a / 2 + (len_a % 2))
+				//if (check_first_half(*stack_a, target_index))
 				{
 					ft_ra(stack_a);
 					target_index--;
