@@ -1054,7 +1054,7 @@ int	main(void)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	int 	argc = 2;
-	char	*argv[] = {"1 3 2 5 4"};
+	char	*argv[] = {"1 3 2 5 4", NULL};
 
 	stack_a = NULL;
 	stack_b = NULL;

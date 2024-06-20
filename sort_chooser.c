@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_chooser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:36:23 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 09:25:28 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 09:50:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ void	sort_chooser(t_stack **stack_a, t_stack **stack_b)
 	else if (len == 4)
 		sort_4(stack_a, stack_b);
 	else
+	{
+		printf("chosen larger stack\n");
 		sort_larger_stack(stack_a, stack_b);
+	}
 }

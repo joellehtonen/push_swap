@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 16:23:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 10:04:33 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,8 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 			break ;
 	}
 	sort_3(stack_a);
-	//printf("sorting done\n");
 	rotate_max_up(stack_b);
 	final_push(stack_a, stack_b);
-	//printf("pushing done\n");
 	//print_stack(*stack_a);
 	final_rotate(stack_a);
 }
