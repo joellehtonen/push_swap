@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 10:04:05 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:16:33 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,9 @@ long long	ft_atoll(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0') * sign;
-		if (result < 0 && sign > 0)
-			return (-1);
-		else if (result > 0 && sign < 0)
-			return (0);
 		str++;
 	}
 	return (result);
-}
-
-void	check_min_max(t_stack **stack_a, long long number)
-{
-	if (number > INT_MAX || number < INT_MIN)
-		free_and_exit(stack_a, NULL, 1);
 }
 
 t_stack	*fill_stack(int argc, char **argv, t_stack **stack_a)
@@ -62,14 +52,15 @@ t_stack	*fill_stack(int argc, char **argv, t_stack **stack_a)
 	}
 	else
 		result = argv;
-	if (!check_input(result))
-		free_and_exit(NULL, NULL, 1);
+	check_input(result, argc);
 	while (result[i])
 	{
 		number = ft_atoll(result[i]);
+		check_min_max(stack_a, number);
 		new = ft_lstnew_int(number);
 		ft_lstadd_back_int(stack_a, new);
 		i++;
 	}
+	check_duplicates(stack_a);
 	return (*stack_a);
 }

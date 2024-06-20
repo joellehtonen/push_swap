@@ -9,7 +9,6 @@ SOURCES =	main.c \
 			cost_and_index.c \
 			fill_stack.c \
 			final_push.c \
-			longest_desc.c \
 			lst_functions.c \
 			push.c \
 			reverse_rotate.c \

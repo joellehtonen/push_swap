@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 16:25:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:25:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ t_stack		*ft_lstlast_int(t_stack *lst);
 t_stack		*ft_lstnew_int(int content);
 int			ft_lstsize_int(t_stack *lst);
 //checker functions
-int			check_integer(char *argv);
-int			check_duplicates(char **argv);
-int			check_input(char **argv);
+void		check_input(char **argv, int argc);
+void		check_integer(char *argv);
+void		check_min_max(t_stack **stack_a, long long number);
+void		check_duplicates(t_stack **stack_a);
 int			check_content_order(t_stack *stack_a);
 int			check_target_order(t_stack *stack_a);
-void		check_min_max(t_stack **stack_a, long long number);
 long long	ft_atoll(const char *str);
 void		free_and_exit(t_stack **stack_a, t_stack **stack_b, int error);
 //initialization, costs, targets, indexes
@@ -66,8 +66,7 @@ int			find_cost_b(t_stack *stack_b, int ref);
 void		assign_cost(t_stack *stack_a, t_stack *stack_b);
 void		assign_index(t_stack *stack);
 int			find_target_value(t_stack *stack_a, t_stack *stack_b);
-void    	longest_desc_order(t_stack *stack_a);
-void    	set_moveable_zero(t_stack *start, int longest);
+int 		check_first_half(t_stack *stack, int ref);
 //sorting functions
 void		sort_chooser(t_stack **stack_a, t_stack **stack_b);
 void		sort_3(t_stack **stack_a);

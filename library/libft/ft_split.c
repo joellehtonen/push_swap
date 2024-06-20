@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:35:22 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/05/21 13:39:39 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:07:41 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static size_t	token_counter(const char *s, char c)
 {
@@ -40,9 +41,7 @@ static size_t	token_len(const char *str, char c)
 
 	len = 0;
 	while (str[len] != '\0' && str[len] != c)
-	{
 		len++;
-	}
 	return (len);
 }
 

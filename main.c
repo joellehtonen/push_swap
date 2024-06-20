@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:44:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:18:11 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_a = fill_stack(argc, argv, &stack_a);
 	if (!stack_a)
-		free_and_exit(&stack_a, NULL, 1);
+		free_and_exit(&stack_a, NULL, 0);
 	if (check_content_order(stack_a))
 		free_and_exit(&stack_a, NULL, 0);
 	sort_chooser(&stack_a, &stack_b);

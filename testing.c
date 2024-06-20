@@ -247,7 +247,12 @@ t_stack	*ft_lstnew_int(int content)
 	if (!new)
 		return (NULL);
 	new->content = content;
+	new->target = 0;
+	new->index = 0;
 	new->next = NULL;
+	new->cost_a = 0;
+	new->cost_b = 0;
+	new->moveable = 1;
 	return (new);
 }
 
@@ -558,16 +563,17 @@ int	check_duplicates(char **argv)
 	return (1);
 }
 
-int	check_input(char **argv)
+int	check_input(char **argv, int argc)
 {
 	int	i;
 
 	i = 1;
-	while (argv[i])
+	while (argc > 1)
 	{
 		if (!check_integer(argv[i]))
 			return (0);
 		i++;
+		argc--;
 	}
 	if (!check_duplicates(argv))
 		return (0);
@@ -597,7 +603,7 @@ t_stack	*fill_stack(int argc, char **argv, t_stack **stack_a)
 	i = 0;
 	number = 0;
 	result = check_argument(argc, argv);
-	if (!check_input(result))
+	if (!check_input(result, argc))
 		free_and_exit(NULL, NULL, 1);
 	while (result[i])
 	{
@@ -644,7 +650,7 @@ int	find_lowest_cost(t_stack *stack_a)
 	check = stack_a;
 	while (check)
 	{
-		if ((check->cost_a + check->cost_b) < lowest_cost)
+		if ((check->cost_a + check->cost_b) < lowest_cost  && check->moveable == 1)
 		{
 			lowest_cost = (check->cost_a + check->cost_b);
 			index = check->index;
@@ -674,10 +680,10 @@ int	find_next_smaller(t_stack *stack_b, int ref)
 	}
 	if (smaller == NULL)
 	{
-		printf("ref is smallest value, biggest is %d with index of %d\n", biggest->content, biggest->index);
+		//printf("ref is smallest value, biggest is %d with index of %d\n", biggest->content, biggest->index);
 		return (biggest->index);
 	}
-	printf("smaller value is %d with index of %d\n", smaller->content, smaller->index);
+	//printf("smaller value is %d with index of %d\n", smaller->content, smaller->index);
 	return (smaller->index);
 }
 
@@ -701,10 +707,10 @@ int	find_next_bigger(t_stack *stack_b, int ref)
 	}
 	if (bigger == NULL)
 	{
-		printf("ref is biggest value, smallest is %d with index of %d\n", smallest->content, smallest->index);
+		//printf("ref is biggest value, smallest is %d with index of %d\n", smallest->content, smallest->index);
 		return (smallest->index);
 	}
-	printf("bigger value is %d with index of %d\n", bigger->content, bigger->index);
+	//printf("bigger value is %d with index of %d\n", bigger->content, bigger->index);
 	return (bigger->index);
 }
 
@@ -730,7 +736,7 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 	int		ref;
 	t_stack	*check;
 
-	cost = 0;
+ 	cost = 0;
 	check = stack_a;
 	len_b = ft_lstsize_int(stack_b);
 	len_a = ft_lstsize_int(stack_a);
@@ -748,7 +754,7 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 			check->cost_a = len_a - check->index + 1;
 		//if (check->target == 1 || check->target == 2 || check->target == 3)
 		//	check->cost_a = 999;
-		printf("assigned cost_a of %d and cost_b of %d to the content of %d\n", check->cost_a, check->cost_b, check->content);
+		printf("assigned cost_a of %d and cost_b of %d to the content of %d. moveable: %d\n", check->cost_a, check->cost_b, check->content, check->moveable);
 		check = check->next;
 	}
 }
@@ -862,6 +868,46 @@ void	node_to_right_place(t_stack **stack_a, t_stack **stack_b)
 // 	return (return_index);
 // }
 
+void    set_moveable_zero(t_stack *start, int longest)
+{
+	printf("longest desc sequence is %d long\n", longest);
+	printf("it starts from %d at index %d\n", start->content, start->index);
+    while (longest > 0)
+    {
+        start->moveable = 0;
+        start = start->next;
+        longest--;
+    }
+}
+
+void    longest_desc_order(t_stack *stack_a)
+{
+	int	    now;
+	int	    longest;
+	t_stack *start;
+	t_stack *temp;
+
+	start = NULL;
+	longest = 0;
+	while (stack_a)
+	{
+		now = 1;
+		temp = stack_a;
+		while (stack_a->next != NULL && stack_a->content < stack_a->next->content)
+		{
+			now++;
+			stack_a = stack_a->next;
+		}
+		if (now > longest)
+		{
+			longest = now;
+			start = temp;
+		}
+		stack_a = stack_a->next;
+	}
+    set_moveable_zero(start, longest);
+}
+
 void	rotate_max_up(t_stack **stack_b)
 {
 	t_stack	*check;
@@ -942,9 +988,9 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 		{
 			assign_index(*stack_a);
 			target_index = find_next_bigger(*stack_a, (*stack_b)->content);
-			printf("the target index is %d\n", target_index);
-			printf("len of stack a is %d\n", len_a);
-			printf("len of stack a divided by 2 is %d\n", len_a / 2);
+			//printf("the target index is %d\n", target_index);
+			//printf("len of stack a is %d\n", len_a);
+			//printf("len of stack a divided by 2 is %d\n", len_a / 2);
 			print_stack(*stack_a);
 			while (target_index != 1 && target_index != len_a + 1)
 			{
@@ -962,7 +1008,7 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 					print_stack(*stack_b);
 					print_stack(*stack_a);
 				}
-				printf("the current index is %d\n", target_index);
+				//printf("the current index is %d\n", target_index);
 			}
 			ft_pa(stack_b, stack_a);
 			len_a++;
@@ -988,6 +1034,7 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 	while (len > 3)
 	{
 		assign_index(*stack_a);
+		longest_desc_order(*stack_a);
 		assign_cost(*stack_a, *stack_b);
 		index = find_lowest_cost(*stack_a);
 		rotate_a_b(stack_a, stack_b, index, len);
@@ -1000,7 +1047,7 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 			break ;
 	}
 	sort_3(stack_a);
-	//rotate_max_up(stack_b);
+	rotate_max_up(stack_b);
 	final_push(stack_a, stack_b);
 	if (!check_content_order(*stack_a))
 		final_rotate(stack_a);
@@ -1053,8 +1100,8 @@ int	main(void)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int 	argc = 2;
-	char	*argv[] = {"1 3 2 5 4", NULL};
+	int 	argc = 4;
+	char	*argv[] = {"a", NULL};
 
 	stack_a = NULL;
 	stack_b = NULL;

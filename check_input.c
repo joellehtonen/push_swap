@@ -3,63 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:45:15 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:18:47 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_integer(char *argv)
+void	check_duplicates(t_stack **stack_a)
+{
+	t_stack *check;
+	t_stack *compare;
+	check = (*stack_a);
+	compare = (*stack_a);
+	while (check)
+	{
+		compare = check->next;
+		while (compare)
+		{
+			if (check->content == compare->content)
+				free_and_exit(stack_a, NULL, 1);
+			compare = compare->next;
+		}
+		check = check->next;
+	}
+}
+
+void	check_min_max(t_stack **stack_a, long long number)
+{
+	if (number > INT_MAX || number < INT_MIN)
+		free_and_exit(stack_a, NULL, 1);
+}
+
+void	check_integer(char *argv)
 {
 	int			i;
-
+	
 	i = 0;
+	if (!argv)
+		return ;
+	if (argv[i] == '+' || argv[i] == '-')
+	{
+		i++;
+		if (!argv[i])
+			free_and_exit(NULL, NULL, 1);
+	}
 	while (argv[i])
 	{
-		if (argv[i] == '+' || argv[i] == '-')
-			i++;
 		if (!ft_isdigit(argv[i]))
-			return (0);
+			free_and_exit(NULL, NULL, 1);
 		i++;
 	}
-	return (1);
 }
 
-int	check_duplicates(char **argv)
-{
-	int		i;
-	int		j;
-
-	i = 1;
-	while (argv[i])
-	{
-		j = i + 1;
-		while (argv[j])
-		{
-			if (!ft_strncmp(argv[i], argv[j], 11))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	check_input(char **argv)
+void	check_input(char **argv, int argc)
 {
 	int	i;
 
-	i = 1;
-	while (argv[i])
+	if (argc == 2)
+		i = 0;
+	else
+		i = 1;
+	if (!argv[0])
+		return ;
+	while (argc > 1)
 	{
-		if (!check_integer(argv[i]))
-			return (0);
+		check_integer(argv[i]);
 		i++;
+		argc--;
 	}
-	if (!check_duplicates(argv))
-		return (0);
-	return (1);
 }

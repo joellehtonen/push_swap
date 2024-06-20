@@ -1,10 +1,3 @@
-split to cut up a big argument within ""
-what if there both numbers and a string? 
-DO THIS NEXT SO YOU CAN RUN CHECKER
-
-MAYBE change lstclear to use while loops instead of recursion (possible problem with stack overflow if recursion goes too deep)
-(check first if this is actually a problem with 5000 or more nodes)
-
 optimize assing_cost later to only do a part of list, in case the list is very long. 
 
 store next value (or its index???) somewhere in the node, so you dont need to look for it twice
@@ -13,13 +6,10 @@ MAKE A SEPARATE FUNCTION TO CHECK WHETHER TO R OR TO RR
 	true if first half of the list
 	false if latter half of the list
 
-SEGFAULTS WITH BIG ARRAYS OF NUMBERS
-
-NEED TO OPTIMIZE
+NEED TO OPTIMIZE a bit
 
 cost value does not calculate that you can use RR and RRR
 
-dont move from A if in descending check_order
-	flag?
+SPLIT the big functions
 
-why the code needs rotate max up?
+why the code needs rotate max up? FIX THIS

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 10:04:33 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:12:48 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,11 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 	while (len > 3)
 	{
 		assign_index(*stack_a);
-		//longest_desc_order(*stack_a);
 		assign_cost(*stack_a, *stack_b);
 		index = find_lowest_cost(*stack_a);
 		rotate_a_b(stack_a, stack_b, index, len);
 		node_to_right_place(stack_a, stack_b);
 		ft_pb(stack_a, stack_b);
-		//print_stack(*stack_b);
 		len--;
 		if (check_content_order(*stack_a))
 			break ;
@@ -97,6 +95,5 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 	sort_3(stack_a);
 	rotate_max_up(stack_b);
 	final_push(stack_a, stack_b);
-	//print_stack(*stack_a);
 	final_rotate(stack_a);
 }

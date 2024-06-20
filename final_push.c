@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   final_push.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/19 11:27:30 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:07:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	rotate_max_up(t_stack **stack_b)
 			}
 		}
 	}
-	printf("max up rotations: %d\n", count);
 }
 
 void	final_rotate(t_stack **stack_a)
@@ -106,7 +105,4 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 			}
 		}
 	}
-	// while (target_index != 1 && target_index != len_a)
-	// 		{
-	// 			if (target_index < len_a / 2)
 }
