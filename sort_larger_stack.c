@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 17:23:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:29:22 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ void	double_rotator(t_stack **sa, t_stack **sb, t_stack *check, int next_index)
 {
 	while (check->cost_a > 0 && check->cost_b > 0)
 	{
-		//if (check_first_half(*sa, check->index) && check_first_half(*sb, next_index))
-		if (check->index < len_a / 2 && next_index < len_b / 2)
+		if (check_first_half(*sa, check->index) && check_first_half(*sb, next_index))
 		{
 			ft_rr(sa, sb);
 			check->cost_a--;
 			check->cost_b--;
 		}
-		//else if (!check_first_half(*sa, check->index) && !check_first_half(*sb, next_index))
-		else if (check->index > len_a / 2 && next_index > len_b / 2)
+		else if (!check_first_half(*sa, check->index) && !check_first_half(*sb, next_index))
 		{
 			ft_rrr(sa, sb);
 			check->cost_a--;
@@ -39,7 +37,7 @@ void	rotate_a(t_stack **sa, t_stack **sb, int index)
 {
 	t_stack	*check;
 	int		next_index;
-
+	
 	check = *sa;
 	while (index-- > 1)
 		check = check->next;
@@ -47,8 +45,7 @@ void	rotate_a(t_stack **sa, t_stack **sb, int index)
 	double_rotator(sa, sb, check, next_index);
 	while (check->cost_a > 0)
 	{
-		//if (check_first_half(*sa, check->index))
-		if (check->index < len_a / 2)
+		if (check_first_half(*sa, check->index))
 			ft_ra(sa);
 		else
 			ft_rra(sa);

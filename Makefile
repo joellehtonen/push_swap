@@ -6,7 +6,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SOURCES =	main.c \
 			check_input.c \
 			check_order.c \
-			cost_and_index.c \
+			cost.c \
+			index.c \
 			fill_stack.c \
 			final_push.c \
 			lst_functions.c \

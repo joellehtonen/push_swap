@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cost_and_index.c                                   :+:      :+:    :+:   */
+/*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 11:11:56 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/06/24 12:30:12 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/06/24 14:25:48 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_lowest_cost(t_stack *stack_a)
+void	assign_index(t_stack *stack)
 {
-	int		lowest_cost;
 	int		index;
-	t_stack	*check;
 
-	lowest_cost = (stack_a->cost_a + stack_a->cost_b);
-	index = stack_a->index;
-	check = stack_a;
-	while (check)
+	index = 1;
+	while (stack)
 	{
-		if ((check->cost_a + check->cost_b) < lowest_cost)
-		{
-			lowest_cost = (check->cost_a + check->cost_b);
-			index = check->index;
-		}
-		check = check->next;
+		stack->index = index;
+		stack = stack->next;
+		index++;
 	}
-	return (index);
+    return ;
+}
+
+int check_first_half(t_stack *stack, int ref)
+{
+	int	len;
+
+	len = ft_lstsize_int(stack);
+	if (ref <= len / 2 + (len % 2))
+		return (1);
+	else
+		return (0);
 }
 
 int	find_next_bigger(t_stack *stack_b, int ref)
@@ -75,44 +79,4 @@ int	find_next_smaller(t_stack *stack, int ref)
 	if (smaller == NULL)
 		return (biggest->index);
 	return (smaller->index);
-}
-
-int	find_cost_b(t_stack *stack_b, int ref)
-{
-	int		cost;
-	int		next_index;
-
-	cost = 0;
-	assign_index(stack_b);
-	next_index = find_next_smaller(stack_b, ref);
-	cost = next_index - 1;
-	return (cost);
-}
-
-void	assign_cost(t_stack *stack_a, t_stack *stack_b)
-{
-	int		cost;
-	int		len_a;
-	int		len_b;
-	int		ref;
-	t_stack	*check;
-
-	cost = 0;
-	check = stack_a;
-	len_b = ft_lstsize_int(stack_b);
-	len_a = ft_lstsize_int(stack_a);
-	while (check)
-	{
-		ref = check->content;
-		cost = find_cost_b(stack_b, ref);
-		if (cost <= len_b / 2)
-			check->cost_b = cost;
-		else
-			check->cost_b = len_b - cost;
-		if (check->index <= len_a / 2)
-			check->cost_a = check->index - 1;
-		else
-			check->cost_a = len_a - check->index + 1;
-		check = check->next;
-	}
 }

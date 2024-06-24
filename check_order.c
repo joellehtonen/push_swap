@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 17:16:16 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:03:43 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,3 @@ void	assign_target_value(t_stack *stack_a)
 		target++;
 	}
 }
-
-void	assign_index(t_stack *stack)
-{
-	t_stack	*check;
-	int		index;
-
-	check = stack;
-	index = 1;
-	while (check)
-	{
-		check->index = index;
-		check = check->next;
-		index++;
-	}
-}
-
-int check_first_half(t_stack *stack, int ref)
-{
-	int	len;
-
-	len = ft_lstsize_int(stack);
-	if (ref < len / 2 + (len % 2))
-		return (1);
-	else
-		return (0);
-}
-

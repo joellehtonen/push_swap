@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 17:20:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:41:10 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,29 @@
 
 void	rotate_max_up(t_stack **stack_b)
 {
-	t_stack	*check;
 	int		len;
-	int		count;
 
-	count = 0;
 	if (check_content_order(*stack_b))
 		return ;
-	check = *stack_b;
 	len = ft_lstsize_int(*stack_b);
 	assign_index(*stack_b);
-	while (check->next != NULL && check->target > check->next->target)
-		check = check->next;
-	if (check->next == NULL)
+	while ((*stack_b)->next != NULL && (*stack_b)->target > (*stack_b)->next->target)
+		(*stack_b) = (*stack_b)->next;
+	if ((*stack_b)->next == NULL)
 		return ;
 	else
 	{
-		while (check->index != 0 && check->index != len)
+		while ((*stack_b)->index != 0 && (*stack_b)->index != len)
 		{
-			if (check->index > len / 2)
+			if (check_first_half(*stack_b, (*stack_b)->index))
 			{
-				ft_rrb(stack_b);
-				check->index++;
-				count++;
+				ft_rb(stack_b);
+				(*stack_b)->index--;
 			}
 			else
 			{
-				ft_rb(stack_b);
-				check->index--;
-				count++;
+				ft_rrb(stack_b);
+				(*stack_b)->index++;
 			}
 		}
 	}
@@ -51,60 +45,72 @@ void	rotate_max_up(t_stack **stack_b)
 void	final_rotate(t_stack **stack_a)
 {
 	t_stack	*check;
-	int		len;
+	//int		len;
 
 	if (check_content_order(*stack_a))
 		return ;
 	check = *stack_a;
-	len = ft_lstsize_int(*stack_a);
+	//len = ft_lstsize_int(*stack_a);
 	assign_index(*stack_a);
 	while (check->target != 1)
 		check = check->next;
 	while ((*stack_a)->target != 1)
 	{
-		//if (check_first_half(*stack_a, check->index))
-		if (check->index > len / 2)
+		if (check_first_half(*stack_a, check->index))
+		//if (check->index > len / 2)
 			ft_ra(stack_a);
 		else
 			ft_rra(stack_a);
 	}
 }
 
-void	final_push(t_stack **stack_a, t_stack **stack_b)
+void	other_target(t_stack **stack_a, t_stack **stack_b, int len_a)
 {
 	int	target_index;
-	int	len_a;
-	int	len_b;
-	int	max;
 
-	len_a = ft_lstsize_int(*stack_a);
-	len_b = ft_lstsize_int(*stack_b);
-	max = len_a + len_b;
-	while (*stack_b)
+	assign_index(*stack_a);
+	target_index = find_next_bigger(*stack_a, (*stack_b)->content);
+	while (target_index != 1 && target_index != len_a + 1)
 	{
-		if (((*stack_a)->target == (*stack_b)->target + 1) || (*stack_b)->target == max)
+		if (check_first_half(*stack_a, target_index))
 		{
-			ft_pa(stack_b, stack_a);
-			len_a++;
+			ft_ra(stack_a);
+			target_index--;
 		}
 		else
 		{
-			assign_index(*stack_a);
-			target_index = find_next_bigger(*stack_a, (*stack_b)->content);
-			while (target_index != 1 && target_index != len_a + 1)
-			{
-				if (target_index <= len_a / 2 + (len_a % 2))
-				//if (check_first_half(*stack_a, target_index))
-				{
-					ft_ra(stack_a);
-					target_index--;
-				}
-				else
-				{
-					ft_rra(stack_a);
-					target_index++;
-				}
-			}
+			ft_rra(stack_a); 
+			target_index++;
+		}
+	}
+}
+
+
+void	final_push(t_stack **stack_a, t_stack **stack_b)
+{
+	int	len_a;
+	int	len_b;
+	int	max;
+	int flag;
+
+	len_a = ft_lstsize_int(*stack_a);
+	len_b = ft_lstsize_int(*stack_b);
+	flag = 0;
+	max = len_a + len_b;
+	if (check_content_order(*stack_b))
+		ft_sb(stack_b);
+	while (*stack_b)
+	{
+		if (((*stack_a)->target == (*stack_b)->target + 1) || (*stack_b)->target == max || flag == 1)
+		{
+			ft_pa(stack_b, stack_a);
+			len_a++;
+			flag = 0;
+		}
+		else
+		{
+			other_target(stack_a, stack_b, len_a);
+			flag = 1;
 		}
 	}
 }

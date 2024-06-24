@@ -394,6 +394,25 @@ void	ft_ss(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr_fd("ss\n", 1);
 }
 
+int	check_input(char **argv, int argc)
+{
+	int	i;
+
+	if (argc == 2)
+		i = 0;
+	else
+		i = 1;
+	if (!argv[0])
+		return (0);
+	while (argc > 1)
+	{
+		check_integer(argv[i]);
+		i++;
+		argc--;
+	}
+	return (1);
+}
+
 int	check_content_order(t_stack *stack_a)
 {
 	while (stack_a->next != NULL)
@@ -499,22 +518,6 @@ void	assign_target_value(t_stack *stack_a)
 	}
 }
 
-int	check_integer(char *argv)
-{
-	int			i;
-
-	i = 0;
-	while (argv[i])
-	{
-		if (argv[i] == '+' || argv[i] == '-')
-			i++;
-		if (!ft_isdigit(argv[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 long long	ft_atoll(const char *str)
 {
 	long long	result;
@@ -541,43 +544,6 @@ long long	ft_atoll(const char *str)
 		str++;
 	}
 	return (result);
-}
-
-int	check_duplicates(char **argv)
-{
-	int		i;
-	int		j;
-
-	i = 1;
-	while (argv[i])
-	{
-		j = i + 1;
-		while (argv[j])
-		{
-			if (!ft_strncmp(argv[i], argv[j], 11))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	check_input(char **argv, int argc)
-{
-	int	i;
-
-	i = 1;
-	while (argc > 1)
-	{
-		if (!check_integer(argv[i]))
-			return (0);
-		i++;
-		argc--;
-	}
-	if (!check_duplicates(argv))
-		return (0);
-	return (1);
 }
 
 char **check_argument(int argc, char **argv)
@@ -1100,8 +1066,8 @@ int	main(void)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int 	argc = 4;
-	char	*argv[] = {"a", NULL};
+	int 	argc = 6;
+	char	*argv[] = {"3", "7", "1", "4", "5", "6", NULL};
 
 	stack_a = NULL;
 	stack_b = NULL;

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:36:23 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 10:06:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:20:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void	sort_4(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
+// void	sort_5(t_stack **stack_a, t_stack **stack_b)
+// {
+	
+// }
+
 void	sort_chooser(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
@@ -78,6 +83,8 @@ void	sort_chooser(t_stack **stack_a, t_stack **stack_b)
 		sort_3(stack_a);
 	else if (len == 4)
 		sort_4(stack_a, stack_b);
+	//else if (len == 5)
+	//	sort_5(stack_a, stack_b);
 	else
 		sort_larger_stack(stack_a, stack_b);
 }
