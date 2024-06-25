@@ -6,40 +6,11 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 12:13:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:08:31 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	rotate_max_up(t_stack **stack_b)
-{
-	int	len;
-	int	first_half;
-	t_stack	*check;
-	
-	if (check_content_order(*stack_b))
-		return ;
-	check = *stack_b;
-	len = ft_lstsize_int(*stack_b);
-	assign_index(*stack_b);
-	while (check->next != NULL && check->target > check->next->target)
-		check = check->next;
-	first_half = check_first_half(*stack_b, (*stack_b)->index);
-	while (check->index != 0 && check->index != len)
-	{
-		if (first_half)
-		{
-			ft_rb(stack_b);
-			check->index--;
-		}
-		else
-		{
-			ft_rrb(stack_b);
-			check->index++;
-		}
-	}
-}
 
 void	final_rotate(t_stack **stack_a)
 {
@@ -88,24 +59,19 @@ void	other_target(t_stack **stack_a, t_stack **stack_b, int len_a)
 void	final_push(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len_a;
-	int	len_b;
-	int	max;
 	int flag;
 
 	len_a = ft_lstsize_int(*stack_a);
-	len_b = ft_lstsize_int(*stack_b);
 	flag = 0;
-	max = len_a + len_b;
 	if (check_content_order(*stack_b))
 		ft_sb(stack_b);
 	while (*stack_b)
 	{
-		if (((*stack_a)->target == (*stack_b)->target + 1) || (*stack_b)->target == max || flag == 1)
+		if (((*stack_a)->target == (*stack_b)->target + 1) || flag == 1)
 		{
 			ft_pa(stack_b, stack_a);
 			len_a++;
 			flag = 0;
-			//print_stack(*stack_a);
 		}
 		else
 		{

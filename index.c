@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:30:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/24 14:25:48 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:06:40 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,27 @@ int check_first_half(t_stack *stack, int ref)
 		return (0);
 }
 
-int	find_next_bigger(t_stack *stack_b, int ref)
+int	find_next_bigger(t_stack *stack, int ref)
 {
 	t_stack	*check;
 	t_stack	*bigger;
 	t_stack *smallest;
 
-	check = stack_b;
+	check = stack;
 	bigger = NULL;
 	smallest = NULL;
 	while (check)
 	{
 		if (check->content > ref && (bigger == NULL || check->content < bigger->content))
 			bigger = check;
-		if (smallest == NULL || check->content > smallest->content)
+		if (smallest == NULL || check->content < smallest->content)
             smallest = check;
 		check = check->next;
 	}
 	if (bigger == NULL)
+	{
 		return (smallest->index);
+	}
 	return (bigger->index);
 }
 
@@ -77,6 +79,8 @@ int	find_next_smaller(t_stack *stack, int ref)
 		check = check->next;
 	}
 	if (smaller == NULL)
+	{
 		return (biggest->index);
+	}
 	return (smaller->index);
 }

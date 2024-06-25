@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 12:07:26 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:09:10 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,18 @@ int	find_lowest_cost(t_stack *stack_a)
 {
 	int		lowest_cost;
 	int		index;
-	t_stack	*check;
 
-	lowest_cost = (stack_a->cost_a + stack_a->cost_b);
-	index = stack_a->index;
-	check = stack_a;
-	while (check)
+	lowest_cost = INT_MAX;
+	index = 0;
+	while (stack_a)
 	{
-		if ((check->cost_a + check->cost_b) < lowest_cost)
+		if (stack_a->moveable == 1 && (stack_a->cost_a + stack_a->cost_b) < lowest_cost)
 		{
-			lowest_cost = (check->cost_a + check->cost_b);
-			index = check->index;
+			lowest_cost = (stack_a->cost_a + stack_a->cost_b);
+			index = stack_a->index;
 		}
-		check = check->next;
+		stack_a = stack_a->next;
 	}
-	
 	return (index);
 }
 
@@ -64,11 +61,10 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 			stack_a->cost_b = cost;
 		else
 			stack_a->cost_b = len_b - cost;
-		if (stack_a->index <= len_a / 2)
+		if (stack_a->index <= len_a / 2 + (len_a % 2))
 			stack_a->cost_a = stack_a->index - 1;
 		else
 			stack_a->cost_a = len_a - stack_a->index + 1;
-		//printf("assigned cost_a of %d and cost_b of %d to the content of %d.\n", stack_a->cost_a, stack_a->cost_b, stack_a->content);
 		stack_a = stack_a->next;
 	}
 }

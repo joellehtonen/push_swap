@@ -673,10 +673,10 @@ int	find_next_bigger(t_stack *stack_b, int ref)
 	}
 	if (bigger == NULL)
 	{
-		//printf("ref is biggest value, smallest is %d with index of %d\n", smallest->content, smallest->index);
+		printf("ref is biggest value, smallest is %d with index of %d\n", smallest->content, smallest->index);
 		return (smallest->index);
 	}
-	//printf("bigger value is %d with index of %d\n", bigger->content, bigger->index);
+	printf("bigger value is %d with index of %d\n", bigger->content, bigger->index);
 	return (bigger->index);
 }
 
@@ -827,7 +827,7 @@ void	node_to_right_place(t_stack **stack_a, t_stack **stack_b)
 	ref = check->content;
 	len = ft_lstsize_int(*stack_b);
 	next = find_next_smaller(*stack_b, ref);
-	//printf("index of the next value is %d\n", next);
+	printf("index of the next value is %d\n", next);
 	while (check->cost_b > 0)
 	{
 		if (next > len / 2 + (len % 2))
@@ -979,9 +979,9 @@ void	final_push(t_stack **stack_a, t_stack **stack_b)
 		{
 			assign_index(*stack_a);
 			target_index = find_next_bigger(*stack_a, (*stack_b)->content);
-			//printf("the target index is %d\n", target_index);
-			//printf("len of stack a is %d\n", len_a);
-			//printf("len of stack a divided by 2 is %d\n", len_a / 2);
+			printf("the target index is %d\n", target_index);
+			printf("len of stack a is %d\n", len_a);
+			printf("len of stack a divided by 2 is %d\n", len_a / 2);
 			print_stack(*stack_a);
 			while (target_index != 1 && target_index != len_a + 1)
 			{

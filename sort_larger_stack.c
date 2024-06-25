@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 12:09:29 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:07:11 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ void	rotate_a(t_stack **sa, t_stack **sb, int index)
 	while (index-- > 1)
 		check = check->next;
 	next_index = find_next_smaller(*sb, check->content);
-	//printf("chosen value is %d\n", check->content);
-	//printf("its index is %d\n", check->index);
-	//printf("its move cost is %d\n", check->cost_a + check->cost_b);
 	double_rotator(sa, sb, check, next_index);
 	first_half = check_first_half(*sa, check->index);
 	while (check->cost_a > 0)
@@ -101,13 +98,11 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 		rotate_a(stack_a, stack_b, index);
 		node_to_right_place(stack_a, stack_b);
 		ft_pb(stack_a, stack_b);
-		//print_stack(*stack_b);
 		len--;
 		if (check_content_order(*stack_a))
 			break ;
 	}
 	sort_3(stack_a);
-	rotate_max_up(stack_b);
 	final_push(stack_a, stack_b);
 	final_rotate(stack_a);
 }
