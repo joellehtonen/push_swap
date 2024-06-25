@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:36:23 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 10:57:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:59:42 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,31 +67,6 @@ void	sort_4(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-// void	sort_5(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	int		smallest;
-// 	t_stack *check;	
-
-// 	smallest = (*stack_a)->content;
-// 	check = *stack_a;
-// 	while (check)
-// 	{
-// 		if (check->content < smallest)
-// 			smallest = check->content;
-// 		check = check->next;
-// 	}
-// 	while ((*stack_a)->content != smallest)
-// 	{
-// 		if (check_first_half(*stack_a, smallest))
-// 			ft_ra(stack_a);
-// 		else
-// 			ft_rra(stack_a);
-// 	}
-// 	ft_pb(stack_a, stack_b);
-// 	sort_4(stack_a, stack_b);
-// 	ft_pa(stack_b, stack_a);
-// }
-
 void	sort_chooser(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
@@ -103,8 +78,6 @@ void	sort_chooser(t_stack **stack_a, t_stack **stack_b)
 		sort_3(stack_a);
 	else if (len == 4)
 		sort_4(stack_a, stack_b);
-	//else if (len == 5)
-	//	sort_5(stack_a, stack_b);
 	else
 		sort_larger_stack(stack_a, stack_b);
 }

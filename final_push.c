@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 16:08:31 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:57:35 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	other_target(t_stack **stack_a, t_stack **stack_b, int len_a)
 		}
 		else
 		{
-			ft_rra(stack_a); 
+			ft_rra(stack_a);
 			target_index++;
 		}
 	}
@@ -59,7 +59,7 @@ void	other_target(t_stack **stack_a, t_stack **stack_b, int len_a)
 void	final_push(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len_a;
-	int flag;
+	int	flag;
 
 	len_a = ft_lstsize_int(*stack_a);
 	flag = 0;

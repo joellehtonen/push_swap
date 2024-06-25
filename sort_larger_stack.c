@@ -6,19 +6,19 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 16:07:11 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:09:37 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	double_rotator(t_stack **sa, t_stack **sb, t_stack *check, int next_index)
+void	double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int new)
 {
-	int first_half_a;
+	int	first_half_a;
 	int	first_half_b;
 
 	first_half_a = check_first_half(*sa, check->index);
-	first_half_b = check_first_half(*sb, next_index);
+	first_half_b = check_first_half(*sb, new);
 	while (check->cost_a > 0 && check->cost_b > 0)
 	{
 		if (first_half_a && first_half_b)
@@ -43,7 +43,7 @@ void	rotate_a(t_stack **sa, t_stack **sb, int index)
 	t_stack	*check;
 	int		next_index;
 	int		first_half;
-	
+
 	check = *sa;
 	while (index-- > 1)
 		check = check->next;

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 15:44:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:58:01 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,10 @@ void	free_and_exit(t_stack **stack_a, t_stack **stack_b, int error)
 		exit(0);
 }
 
-void	print_stack(t_stack *stack_a)
-{
-	t_stack	*temp;
-
-	temp = stack_a;
-	while (temp)
-	{
-		printf("%d ", temp->content);
-		temp = temp->next;
-	}
-	printf("\n");
-}
-
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 
 	if (argc < 2)
 		return (0);
@@ -55,7 +42,6 @@ int	main(int argc, char **argv)
 	if (check_content_order(stack_a))
 		free_and_exit(&stack_a, NULL, 0);
 	sort_chooser(&stack_a, &stack_b);
-	//print_stack(stack_a);
 	free_and_exit(&stack_a, &stack_b, 0);
 	return (1);
 }

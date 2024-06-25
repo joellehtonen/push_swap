@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 16:08:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:09:45 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_stack
 	int				index;
 	int				cost_a;
 	int				cost_b;
-	int				moveable;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -66,17 +65,16 @@ int			find_cost_b(t_stack *stack_b, int ref);
 void		assign_cost(t_stack *stack_a, t_stack *stack_b);
 void		assign_index(t_stack *stack);
 int			find_target_value(t_stack *stack_a, t_stack *stack_b);
-int 		check_first_half(t_stack *stack, int ref);
+int			check_first_half(t_stack *stack, int ref);
 //sorting functions
 void		sort_chooser(t_stack **stack_a, t_stack **stack_b);
 void		sort_3(t_stack **stack_a);
 void		sort_4(t_stack **stack_a, t_stack **stack_b);
 void		sort_larger_stack(t_stack **stack_a, t_stack **stack_b);
 void		rotate_a(t_stack **sa, t_stack **sb, int index);
-void		double_rotator(t_stack **sa, t_stack **sb, t_stack *check, int next_index);
+void		double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int new);
 void		node_to_right_place(t_stack **stack_a, t_stack **stack_b);
 void		final_rotate(t_stack **stack_a);
 void		final_push(t_stack **stack_a, t_stack **stack_b);
-void		print_stack(t_stack *stack_a);
 
 #endif

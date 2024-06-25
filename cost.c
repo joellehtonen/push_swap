@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 16:09:10 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:00:35 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	find_lowest_cost(t_stack *stack_a)
 	index = 0;
 	while (stack_a)
 	{
-		if (stack_a->moveable == 1 && (stack_a->cost_a + stack_a->cost_b) < lowest_cost)
+		if ((stack_a->cost_a + stack_a->cost_b) < lowest_cost)
 		{
 			lowest_cost = (stack_a->cost_a + stack_a->cost_b);
 			index = stack_a->index;

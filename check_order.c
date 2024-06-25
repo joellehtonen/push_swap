@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:54:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/24 15:03:43 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:57:10 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	check_target_order(t_stack *stack_a)
 void	assign_target_value(t_stack *stack_a)
 {
 	t_stack	*lowest;
-	t_stack *temp;
+	t_stack	*temp;
 	int		len;
 	int		target;
-	
+
 	len = ft_lstsize_int(stack_a);
 	target = 1;
 	while (target <= len)

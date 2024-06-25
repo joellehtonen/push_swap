@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 16:18:47 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:07:33 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	check_duplicates(t_stack **stack_a)
 {
-	t_stack *check;
-	t_stack *compare;
+	t_stack	*check;
+	t_stack	*compare;
+
 	check = (*stack_a);
 	compare = (*stack_a);
 	while (check)
@@ -39,8 +40,8 @@ void	check_min_max(t_stack **stack_a, long long number)
 
 void	check_integer(char *argv)
 {
-	int			i;
-	
+	int	i;
+
 	i = 0;
 	if (!argv)
 		return ;

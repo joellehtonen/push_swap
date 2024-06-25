@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:30:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 16:06:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:07:01 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	assign_index(t_stack *stack)
 {
-	int		index;
+	int	index;
 
 	index = 1;
 	while (stack)
@@ -23,10 +23,9 @@ void	assign_index(t_stack *stack)
 		stack = stack->next;
 		index++;
 	}
-    return ;
 }
 
-int check_first_half(t_stack *stack, int ref)
+int	check_first_half(t_stack *stack, int ref)
 {
 	int	len;
 
@@ -41,17 +40,20 @@ int	find_next_bigger(t_stack *stack, int ref)
 {
 	t_stack	*check;
 	t_stack	*bigger;
-	t_stack *smallest;
+	t_stack	*smallest;
 
 	check = stack;
 	bigger = NULL;
 	smallest = NULL;
 	while (check)
 	{
-		if (check->content > ref && (bigger == NULL || check->content < bigger->content))
+		if (check->content > ref
+			&& (bigger == NULL || check->content < bigger->content))
+		{
 			bigger = check;
+		}
 		if (smallest == NULL || check->content < smallest->content)
-            smallest = check;
+			smallest = check;
 		check = check->next;
 	}
 	if (bigger == NULL)
@@ -72,8 +74,11 @@ int	find_next_smaller(t_stack *stack, int ref)
 	biggest = NULL;
 	while (check)
 	{
-		if (check->content < ref && (smaller == NULL || check->content > smaller->content))
+		if (check->content < ref
+			&& (smaller == NULL || check->content > smaller->content))
+		{
 			smaller = check;
+		}
 		if (biggest == NULL || check->content > biggest->content)
 			biggest = check;
 		check = check->next;
