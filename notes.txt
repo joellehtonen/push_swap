@@ -7,3 +7,5 @@ NEED TO OPTIMIZE a bit
 cost value does not calculate that you can use RR and RRR
 
 why the code needs rotate max up? FIX THIS
+
+input " " should return ERROR

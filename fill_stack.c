@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 16:16:33 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:08:02 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ t_stack	*fill_stack(int argc, char **argv, t_stack **stack_a)
 		i++;
 	}
 	check_duplicates(stack_a);
+	//print_stack(*stack_a);
 	return (*stack_a);
 }

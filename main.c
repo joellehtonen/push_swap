@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/24 16:02:15 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:13:12 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	if (check_content_order(stack_a))
 		free_and_exit(&stack_a, NULL, 0);
 	sort_chooser(&stack_a, &stack_b);
-	print_stack(stack_a);
+	//print_stack(stack_a);
 	free_and_exit(&stack_a, &stack_b, 0);
 	return (1);
 }

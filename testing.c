@@ -725,6 +725,31 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+// void	sort_5(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int		smallest;
+// 	t_stack *check;	
+
+// 	smallest = (*stack_a)->content;
+// 	check = *stack_a;
+// 	while (check)
+// 	{
+// 		if (check->content < smallest)
+// 			smallest = check->content;
+// 		check = check->next;
+// 	}
+// 	while ((*stack_a)->content != smallest)
+// 	{
+// 		if (check_first_half(*stack_a, smallest))
+// 			ft_ra(stack_a);
+// 		else
+// 			ft_rra(stack_a);
+// 	}
+// 	ft_pb(stack_a, stack_b);
+// 	sort_4(stack_a, stack_b);
+// 	ft_pa(stack_b, stack_a);
+// }
+
 void	assign_index(t_stack *stack)
 {
 	t_stack	*check;
@@ -1066,8 +1091,8 @@ int	main(void)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int 	argc = 6;
-	char	*argv[] = {"3", "7", "1", "4", "5", "6", NULL};
+	int 	argc = 101;
+	char	*argv[] = {"39", "43", "90", "81", "46", "30", "1", "19", "83", "58", "10", "40", "74", "62", "75", "69", "78", "68", "88", "55", "84", "5", "36", "72", "94", "66", "98", "48", "7", "89", "97", "17", "23", "79", "32", "65", "12", "42", "27", "61", "44", "45", "24", "26", "33", "57", "8", "41", "63", "53", "9", "0", "51", "76", "14", "85", "92", "4", "16", "93", "52", "59", "20", "25", "77", "67", "18", "2", "50", "37", "82", "47", "71", "21", "73", "13", "34", "64", "6", "86", "56", "35", "29", "31", "49", "80", "22", "11", "99", "70", "54", "15", "60", "28", "38", "91", "95", "87", "96", "3", NULL};
 
 	stack_a = NULL;
 	stack_b = NULL;
