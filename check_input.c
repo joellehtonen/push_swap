@@ -6,36 +6,36 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 17:07:33 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:20:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_duplicates(t_stack **stack_a)
+void	check_duplicates(t_stack *stack_a)
 {
 	t_stack	*check;
 	t_stack	*compare;
 
-	check = (*stack_a);
-	compare = (*stack_a);
+	check = stack_a;
+	compare = stack_a;
 	while (check)
 	{
 		compare = check->next;
 		while (compare)
 		{
 			if (check->content == compare->content)
-				free_and_exit(stack_a, NULL, 1);
+				free_and_exit(&stack_a, NULL, 1);
 			compare = compare->next;
 		}
 		check = check->next;
 	}
 }
 
-void	check_min_max(t_stack **stack_a, long long number)
+void	check_min_max(t_stack *stack_a, long long number)
 {
 	if (number > INT_MAX || number < INT_MIN)
-		free_and_exit(stack_a, NULL, 1);
+		free_and_exit(&stack_a, NULL, 1);
 }
 
 void	check_integer(char *argv)

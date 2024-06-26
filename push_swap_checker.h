@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   push_swap_checker.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 13:09:50 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/26 15:16:34 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/06/26 14:37:27 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/06/26 17:26:39 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_CHECKER_H
+# define PUSH_SWAP_CHECKER_H
 
-char	*ft_strchr(char *s, int c)
-{
-	char	a;
+# include "push_swap.h"
+# include "library/libft/libft.h"
+# include "library/get_next_line/get_next_line.h"
 
-	a = c;
-	if (s == 0)
-		return (0);
-	while (*s != '\0' && *s != a)
-	{
-		s++;
-	}
-	if (*s == a)
-		return ((char *)s);
-	return (0);
-}
+void command_chooser(char *cmd, t_stack **stack_a, t_stack **stack_b);
+void checker(int argc, char **argv);
+
+#endif

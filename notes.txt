@@ -5,9 +5,3 @@ store next value (or its index???) somewhere in the node, so you dont need to lo
 NEED TO OPTIMIZE a bit
 
 cost value does not calculate that you can use RR and RRR
-
-why the code needs rotate max up? FIX THIS
-
-maybe add +1 to smallest and biggest index
-
-remember to remove print stack

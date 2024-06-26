@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 15:47:44 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:35:58 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_lstreverse_rotate(t_stack **stack)
+void	ft_lstreverse_rotate(t_stack **stack)
 {
 	t_stack	*head;
 	t_stack	*new_tail;

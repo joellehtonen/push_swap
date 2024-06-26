@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/26 10:19:41 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:18:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_b = NULL;
 	stack_a = NULL;
-	stack_a = check_argument(argc, argv, &stack_a);
+	stack_a = check_and_fill(argc, argv, &stack_a);
 	if (!stack_a)
 		free_and_exit(&stack_a, NULL, 0);
 	if (check_content_order(stack_a))

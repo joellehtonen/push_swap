@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlehtone <jlehtone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:39:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/12 15:49:24 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:35:48 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_lstswap(t_stack **stack)
+void	ft_lstswap(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*second;
