@@ -6,12 +6,11 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:35:22 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/20 13:07:41 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:09:29 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static size_t	token_counter(const char *s, char c)
 {
@@ -89,10 +88,17 @@ char	**ft_split(char const *s, char c)
 	char	**result;
 	size_t	token_count;
 
+	if (!s)
+		return (NULL);
 	token_count = token_counter(s, c);
 	result = (char **)malloc(sizeof(char *) * (token_count + 1));
-	if (result == NULL)
+	if (!result)
 		return (NULL);
 	result = splitter(s, c, result, token_count);
+	if (!result)
+	{
+		free(result);
+		return (NULL);
+	}
 	return (result);
 }

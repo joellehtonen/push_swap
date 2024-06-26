@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 17:09:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:21:49 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "library/libft/libft.h"
-# include "library/printf/ft_printf.h"
-# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -55,8 +53,8 @@ int			check_target_order(t_stack *stack_a);
 long long	ft_atoll(const char *str);
 void		free_and_exit(t_stack **stack_a, t_stack **stack_b, int error);
 //initialization, costs, targets, indexes
-t_stack		*fill_stack(int argc, char **argv, t_stack **stack_a);
-char		**check_argument(int argc, char **argv);
+t_stack		*check_argument(int argc, char **argv, t_stack **stack_a);
+t_stack 	*fill_stack(char **result, int i, t_stack **stack_a);
 void		assign_target_value(t_stack *stack_a);
 int			find_lowest_cost(t_stack *stack_a);
 int			find_next_smaller(t_stack *stack_b, int ref);
@@ -72,8 +70,8 @@ void		sort_3(t_stack **stack_a);
 void		sort_4(t_stack **stack_a, t_stack **stack_b);
 void		sort_larger_stack(t_stack **stack_a, t_stack **stack_b);
 void		rotate_a(t_stack **sa, t_stack **sb, int index);
-void		double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int new);
-void		node_to_right_place(t_stack **stack_a, t_stack **stack_b);
+void		double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int i_b);
+void		rotate_b(t_stack **stack_a, t_stack **stack_b);
 void		final_rotate(t_stack **stack_a);
 void		final_push(t_stack **stack_a, t_stack **stack_b);
 

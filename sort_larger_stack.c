@@ -6,19 +6,19 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 17:09:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/26 09:38:11 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int new)
+void	double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int i_b)
 {
 	int	first_half_a;
 	int	first_half_b;
 
 	first_half_a = check_first_half(*sa, check->index);
-	first_half_b = check_first_half(*sb, new);
+	first_half_b = check_first_half(*sb, i_b);
 	while (check->cost_a > 0 && check->cost_b > 0)
 	{
 		if (first_half_a && first_half_b)
@@ -48,7 +48,7 @@ void	rotate_a(t_stack **sa, t_stack **sb, int index)
 	while (index-- > 1)
 		check = check->next;
 	next_index = find_next_smaller(*sb, check->content);
-	double_rotator(sa, sb, check, next_index);
+	double_rotate(sa, sb, check, next_index);
 	first_half = check_first_half(*sa, check->index);
 	while (check->cost_a > 0)
 	{
@@ -60,7 +60,7 @@ void	rotate_a(t_stack **sa, t_stack **sb, int index)
 	}
 }
 
-void	node_to_right_place(t_stack **stack_a, t_stack **stack_b)
+void	rotate_b(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*check;
 	int		next;
@@ -96,13 +96,14 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 		assign_cost(*stack_a, *stack_b);
 		index = find_lowest_cost(*stack_a);
 		rotate_a(stack_a, stack_b, index);
-		node_to_right_place(stack_a, stack_b);
+		rotate_b(stack_a, stack_b);
 		ft_pb(stack_a, stack_b);
 		len--;
 		if (check_content_order(*stack_a))
 			break ;
 	}
-	sort_3(stack_a);
+	if (len == 3)
+		sort_3(stack_a);
 	final_push(stack_a, stack_b);
 	final_rotate(stack_a);
 }
