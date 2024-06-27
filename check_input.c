@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/26 17:20:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:57:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	check_integer(char *argv)
 	int	i;
 
 	i = 0;
-	if (!argv)
-		return ;
+	if (!*argv)
+		free_and_exit(NULL, NULL, 1);
 	if (argv[i] == '+' || argv[i] == '-')
 	{
 		i++;
@@ -69,7 +69,7 @@ void	check_input(char **argv, int argc)
 		i = 1;
 	if (!argv[0])
 		return ;
-	while (argc > 1)
+	while (argv[i])
 	{
 		check_integer(argv[i]);
 		i++;

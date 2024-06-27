@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 13:49:56 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/27 15:12:02 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/06/27 14:42:44 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/06/27 14:43:59 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	free_and_exit(t_stack **stack_a, t_stack **stack_b, int error)
 {
-	t_stack		*stack_a;
-	t_stack		*stack_b;
+	if (stack_a && *stack_a)
+		ft_lstclear_int(stack_a);
+	if (stack_b && *stack_b)
+		ft_lstclear_int(stack_b);
+	if (error == 1)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(1);
+	}
+	else
+		exit(0);
+}
 
-	if (argc < 2)
-		return (0);
-	stack_b = NULL;
-	stack_a = NULL;
-	stack_a = check_and_fill(argc, argv, &stack_a);
-	if (!stack_a)
-		free_and_exit(&stack_a, NULL, 0);
-	if (check_content_order(stack_a))
-		free_and_exit(&stack_a, NULL, 0);
-	sort_chooser(&stack_a, &stack_b);
-	free_and_exit(&stack_a, &stack_b, 0);
-	return (1);
+void	print_stack(t_stack *stack_a)
+{
+	t_stack	*temp;
+
+	temp = stack_a;
+	while (temp)
+	{
+		printf("%d ", temp->content);
+		temp = temp->next;
+	}
+	printf("\n");
 }

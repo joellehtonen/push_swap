@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/26 17:20:46 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:09:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ t_stack	*check_and_fill(int argc, char **argv, t_stack **stack_a)
 		i = 0;
 	}
 	else
+	{
 		result = argv;
+	}
 	check_input(result, argc);
 	fill_stack(result, i, stack_a);
 	check_duplicates(*stack_a);

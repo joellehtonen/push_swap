@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 17:00:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:59:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 			stack_a->cost_a = stack_a->index - 1;
 		else
 			stack_a->cost_a = len_a - stack_a->index + 1;
+		//printf("assigned cost_a of %d and cost_b of %d to the content of %d\n", stack_a->cost_a, stack_a->cost_b, stack_a->content);
 		stack_a = stack_a->next;
 	}
 }

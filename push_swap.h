@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/26 17:19:17 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:57:39 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "library/libft/libft.h"
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -77,5 +78,6 @@ void		double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int i_b);
 void		rotate_b(t_stack **stack_a, t_stack **stack_b);
 void		final_rotate(t_stack **stack_a);
 void		final_push(t_stack **stack_a, t_stack **stack_b);
+void		print_stack(t_stack *stack_a);
 
 #endif
