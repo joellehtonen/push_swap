@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:02:36 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 17:00:49 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:20:53 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_stack	*ft_lstnew_int(int content)
 	new->next = NULL;
 	new->cost_a = 0;
 	new->cost_b = 0;
+	new->combo = 0;
 	return (new);
 }
 

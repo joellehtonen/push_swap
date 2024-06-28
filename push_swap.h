@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/27 12:57:39 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:40:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_stack
 	int				index;
 	int				cost_a;
 	int				cost_b;
+	int				combo;
+	int				total_cost;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -63,11 +65,12 @@ void		assign_target_value(t_stack *stack_a);
 int			find_lowest_cost(t_stack *stack_a);
 int			find_next_smaller(t_stack *stack_b, int ref);
 int			find_next_bigger(t_stack *stack_b, int ref);
-int			find_cost_b(t_stack *stack_b, int ref);
+int			find_cost(t_stack *stack_b, int ref);
 void		assign_cost(t_stack *stack_a, t_stack *stack_b);
 void		assign_index(t_stack *stack);
 int			find_target_value(t_stack *stack_a, t_stack *stack_b);
 int			check_first_half(t_stack *stack, int ref);
+void 		combo_calc(t_stack *stack_a);
 //sorting functions
 void		sort_chooser(t_stack **stack_a, t_stack **stack_b);
 void		sort_3(t_stack **stack_a);

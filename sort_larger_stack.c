@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/27 15:00:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:48:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,17 @@ void	double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int i_b)
 
 	first_half_a = check_first_half(*sa, check->index);
 	first_half_b = check_first_half(*sb, i_b);
-	while (check->cost_a > 0 && check->cost_b > 0)
+	while (check->combo > 0)
 	{
 		if (first_half_a && first_half_b)
 		{
 			ft_rr(sa, sb);
-			check->cost_a--;
-			check->cost_b--;
+			check->combo--;
 		}
 		else if (!first_half_a && !first_half_b)
 		{
 			ft_rrr(sa, sb);
-			check->cost_a--;
-			check->cost_b--;
+			check->combo--;
 		}
 		else
 			return ;
@@ -71,7 +69,6 @@ void	rotate_b(t_stack **stack_a, t_stack **stack_b)
 	ref = check->content;
 	next = find_next_smaller(*stack_b, ref);
 	first_half = check_first_half(*stack_b, next);
-	//printf("chosen value is %d, its index is %d, its move cost is %d\n", check->content, check->index, check->cost_a + check->cost_b);
 	while (check->cost_b > 0)
 	{
 		if (first_half)
@@ -99,8 +96,6 @@ void	sort_larger_stack(t_stack **stack_a, t_stack **stack_b)
 		rotate_a(stack_a, stack_b, index);
 		rotate_b(stack_a, stack_b);
 		ft_pb(stack_a, stack_b);
-		//print_stack(*stack_b);
-		//print_stack(*stack_a);
 		len--;
 		if (check_content_order(*stack_a))
 			break ;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   final_push.c                                       :+:      :+:    :+:   */
+/*   final_push_v2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/28 11:27:10 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:44:05 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,48 +33,60 @@ void	final_rotate(t_stack **stack_a)
 	}
 }
 
-void	other_target(t_stack **stack_a, t_stack **stack_b, int len_a)
+void	rotate_b_final(t_stack **sa, t_stack **sb, int index)
 {
-	int	target_index;
-	int	first_half;
+	t_stack	*check;
+	int		next_index;
+	int		first_half;
 
-	assign_index(*stack_a);
-	target_index = find_next_bigger(*stack_a, (*stack_b)->content);
-	first_half = check_first_half(*stack_a, target_index);
-	while (target_index != 1 && target_index != len_a + 1)
+	check = *sb;
+	while (index-- > 1)
+		check = check->next;
+	next_index = find_next_bigger(*sa, check->content);
+	double_rotate(sa, sb, check, next_index);
+	first_half = check_first_half(*sb, check->index);
+	while (check->cost_b > 0)
 	{
 		if (first_half)
-		{
-			ft_ra(stack_a);
-			target_index--;
-		}
+			ft_rb(sb);
 		else
-		{
-			ft_rra(stack_a);
-			target_index++;
-		}
+			ft_rrb(sb);
+		check->cost_b--;
 	}
 }
 
-void	final_push(t_stack **stack_a, t_stack **stack_b)
+void	rotate_a_final(t_stack **stack_a, t_stack **stack_b)
 {
-	int	len_a;
-	int	flag;
+	t_stack	*check;
+	int		next;
+	int		ref;
+	int		first_half;
 
-	len_a = ft_lstsize_int(*stack_a);
-	flag = 0;
-	while (*stack_b)
+	check = (*stack_b);
+	ref = check->content;
+	next = find_next_bigger(*stack_a, ref);
+	first_half = check_first_half(*stack_a, next);
+	while (check->cost_a > 0)
 	{
-		if (((*stack_a)->target == (*stack_b)->target + 1) || flag == 1)
-		{
-			ft_pa(stack_b, stack_a);
-			len_a++;
-			flag = 0;
-		}
+		if (first_half)
+			ft_ra(stack_a);
 		else
-		{
-			other_target(stack_a, stack_b, len_a);
-			flag = 1;
-		}
+			ft_rra(stack_a);
+		check->cost_a--;
+	}
+}
+
+void	final_push_v2(t_stack **stack_a, t_stack **stack_b)
+{
+	int		index;
+
+	while (stack_b)
+	{
+		assign_index(*stack_b);
+		assign_cost(*stack_b, *stack_a);
+		index = find_lowest_cost(*stack_b);
+		rotate_b_final(stack_a, stack_b, index);
+		rotate_a_final(stack_a, stack_b);
+		ft_pa(stack_a, stack_b);
 	}
 }
