@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:10:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/28 12:58:28 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:53:44 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	find_cost(t_stack *stack, int ref)
 	return (cost);
 }
 
-void combo_calc(t_stack *stack_a)
+void	combo_calc(t_stack *stack_a)
 {
 	stack_a->combo = 0;
 	while (stack_a->cost_a > 0 && stack_a->cost_b > 0)
@@ -66,8 +66,7 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 	len_a = ft_lstsize_int(stack_a);
 	while (stack_a)
 	{
-		ref = stack_a->content;
-		cost = find_cost(stack_b, ref);
+		cost = find_cost(stack_b, stack_a->content);
 		if (cost <= len_b / 2)
 			stack_a->cost_b = cost;
 		else
@@ -76,8 +75,9 @@ void	assign_cost(t_stack *stack_a, t_stack *stack_b)
 			stack_a->cost_a = stack_a->index - 1;
 		else
 			stack_a->cost_a = len_a - stack_a->index + 1;
-		if ((stack_a->index <= len_a / 2 + (len_a % 2) && check_first_half(stack_b, cost))
-		|| (stack_a->index > len_a / 2 + (len_a % 2) && !check_first_half(stack_b, cost)))
+		ref = stack_a->index;
+		if ((ref <= len_a / 2 + (len_a % 2) && first_half(stack_b, cost))
+			|| (ref > len_a / 2 + (len_a % 2) && !first_half(stack_b, cost)))
 			combo_calc(stack_a);
 		stack_a = stack_a->next;
 	}

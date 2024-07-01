@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:13:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/28 11:48:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:50:30 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	double_rotate(t_stack **sa, t_stack **sb, t_stack *check, int i_b)
 	int	first_half_a;
 	int	first_half_b;
 
-	first_half_a = check_first_half(*sa, check->index);
-	first_half_b = check_first_half(*sb, i_b);
+	first_half_a = first_half(*sa, check->index);
+	first_half_b = first_half(*sb, i_b);
 	while (check->combo > 0)
 	{
 		if (first_half_a && first_half_b)
@@ -40,17 +40,15 @@ void	rotate_a(t_stack **sa, t_stack **sb, int index)
 {
 	t_stack	*check;
 	int		next_index;
-	int		first_half;
 
 	check = *sa;
 	while (index-- > 1)
 		check = check->next;
 	next_index = find_next_smaller(*sb, check->content);
 	double_rotate(sa, sb, check, next_index);
-	first_half = check_first_half(*sa, check->index);
 	while (check->cost_a > 0)
 	{
-		if (first_half)
+		if (first_half(*sa, check->index))
 			ft_ra(sa);
 		else
 			ft_rra(sa);
@@ -63,15 +61,13 @@ void	rotate_b(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*check;
 	int		next;
 	int		ref;
-	int		first_half;
 
 	check = (*stack_a);
 	ref = check->content;
 	next = find_next_smaller(*stack_b, ref);
-	first_half = check_first_half(*stack_b, next);
 	while (check->cost_b > 0)
 	{
-		if (first_half)
+		if (first_half(*stack_b, next))
 			ft_rb(stack_b);
 		else
 			ft_rrb(stack_b);

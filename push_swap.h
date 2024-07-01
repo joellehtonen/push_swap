@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:37:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/28 12:40:34 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:11:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_stack
 	int				cost_a;
 	int				cost_b;
 	int				combo;
-	int				total_cost;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -51,16 +50,17 @@ t_stack		*ft_lstlast_int(t_stack *lst);
 t_stack		*ft_lstnew_int(int content);
 int			ft_lstsize_int(t_stack *lst);
 //checker functions
-void		check_input(char **argv, int argc);
-void		check_integer(char *argv);
-void		check_min_max(t_stack *stack_a, long long number);
+int			check_input(char **argv, int argc);
+int			check_integer(char *argv);
+int			check_min_max(long long number);
 void		check_duplicates(t_stack *stack_a);
 int			check_content_order(t_stack *stack_a);
 long long	ft_atoll(const char *str);
 void		free_and_exit(t_stack **stack_a, t_stack **stack_b, int error);
+void		free_split(char **result);
 //initialization, costs, targets, indexes
 t_stack		*check_and_fill(int argc, char **argv, t_stack **stack_a);
-t_stack 	*fill_stack(char **result, int i, t_stack **stack_a);
+t_stack		*fill_stack(char **result, int i, t_stack **stack_a);
 void		assign_target_value(t_stack *stack_a);
 int			find_lowest_cost(t_stack *stack_a);
 int			find_next_smaller(t_stack *stack_b, int ref);
@@ -69,8 +69,8 @@ int			find_cost(t_stack *stack_b, int ref);
 void		assign_cost(t_stack *stack_a, t_stack *stack_b);
 void		assign_index(t_stack *stack);
 int			find_target_value(t_stack *stack_a, t_stack *stack_b);
-int			check_first_half(t_stack *stack, int ref);
-void 		combo_calc(t_stack *stack_a);
+int			first_half(t_stack *stack, int ref);
+void		combo_calc(t_stack *stack_a);
 //sorting functions
 void		sort_chooser(t_stack **stack_a, t_stack **stack_b);
 void		sort_3(t_stack **stack_a);

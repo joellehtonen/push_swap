@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:30:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/25 17:07:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:06:02 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	assign_index(t_stack *stack)
 	}
 }
 
-int	check_first_half(t_stack *stack, int ref)
+int	first_half(t_stack *stack, int ref)
 {
 	int	len;
 

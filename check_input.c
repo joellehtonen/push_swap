@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:01:12 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/27 16:57:20 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:51:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,37 @@ void	check_duplicates(t_stack *stack_a)
 	}
 }
 
-void	check_min_max(t_stack *stack_a, long long number)
+int	check_min_max(long long number)
 {
 	if (number > INT_MAX || number < INT_MIN)
-		free_and_exit(&stack_a, NULL, 1);
+		return (0);
+	else
+		return (1);
 }
 
-void	check_integer(char *argv)
+int	check_integer(char *argv)
 {
 	int	i;
 
 	i = 0;
 	if (!*argv)
-		free_and_exit(NULL, NULL, 1);
+		return (0);
 	if (argv[i] == '+' || argv[i] == '-')
 	{
 		i++;
 		if (!argv[i])
-			free_and_exit(NULL, NULL, 1);
+			return (0);
 	}
 	while (argv[i])
 	{
 		if (!ft_isdigit(argv[i]))
-			free_and_exit(NULL, NULL, 1);
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
-void	check_input(char **argv, int argc)
+int	check_input(char **argv, int argc)
 {
 	int	i;
 
@@ -68,11 +71,13 @@ void	check_input(char **argv, int argc)
 	else
 		i = 1;
 	if (!argv[0])
-		return ;
+		return (1);
 	while (argv[i])
 	{
-		check_integer(argv[i]);
+		if (!check_integer(argv[i]))
+			return (0);
 		i++;
 		argc--;
 	}
+	return (1);
 }

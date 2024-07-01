@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:42:44 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/27 14:43:59 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:10:18 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ void	free_and_exit(t_stack **stack_a, t_stack **stack_b, int error)
 	}
 	else
 		exit(0);
+}
+
+void	free_split(char **result)
+{
+	int	i;
+
+	i = 0;
+	while (result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
 }
 
 void	print_stack(t_stack *stack_a)

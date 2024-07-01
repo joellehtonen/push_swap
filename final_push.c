@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:15:35 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/28 11:27:10 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:09:19 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	final_rotate(t_stack **stack_a)
 {
 	t_stack	*check;
-	int		first_half;
 
 	if (check_content_order(*stack_a))
 		return ;
@@ -23,10 +22,9 @@ void	final_rotate(t_stack **stack_a)
 	assign_index(*stack_a);
 	while (check->target != 1)
 		check = check->next;
-	first_half = check_first_half(*stack_a, check->index);
 	while ((*stack_a)->target != 1)
 	{
-		if (first_half)
+		if (first_half(*stack_a, check->index))
 			ft_ra(stack_a);
 		else
 			ft_rra(stack_a);
@@ -36,14 +34,12 @@ void	final_rotate(t_stack **stack_a)
 void	other_target(t_stack **stack_a, t_stack **stack_b, int len_a)
 {
 	int	target_index;
-	int	first_half;
 
 	assign_index(*stack_a);
 	target_index = find_next_bigger(*stack_a, (*stack_b)->content);
-	first_half = check_first_half(*stack_a, target_index);
 	while (target_index != 1 && target_index != len_a + 1)
 	{
-		if (first_half)
+		if (first_half(*stack_a, target_index))
 		{
 			ft_ra(stack_a);
 			target_index--;

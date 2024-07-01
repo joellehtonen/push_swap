@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/06/27 17:09:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:22:12 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,31 @@ long long	ft_atoll(const char *str)
 	return (result);
 }
 
-t_stack *fill_stack(char **result, int i, t_stack **stack_a)
+t_stack	*fill_stack(char **result, int i, t_stack **stack_a)
 {
 	long long	number;
 	t_stack		*new;
 	int			split_status;
-	
-	split_status = i;
+
+	if (i == 0)
+		split_status = 1;
+	else
+		split_status = 0;
 	number = 0;
 	while (result[i])
 	{
 		number = ft_atoll(result[i]);
-		check_min_max(*stack_a, number);
+		if (!check_min_max(number))
+		{
+			free_split(result);
+			free_and_exit(stack_a, NULL, 1);
+		}
 		new = ft_lstnew_int(number);
 		ft_lstadd_back_int(stack_a, new);
-		if (split_status == 0)
-			free(result[i]);
 		i++;
 	}
-	if (split_status == 0)
-		free(result);
+	if (split_status)
+		free_split(result);
 	return (*stack_a);
 }
 
@@ -71,10 +76,13 @@ t_stack	*check_and_fill(int argc, char **argv, t_stack **stack_a)
 		i = 0;
 	}
 	else
-	{
 		result = argv;
+	if (!check_input(result, argc))
+	{
+		if (i == 0)
+			free_split(result);
+		free_and_exit(NULL, NULL, 1);
 	}
-	check_input(result, argc);
 	fill_stack(result, i, stack_a);
 	check_duplicates(*stack_a);
 	return (*stack_a);
