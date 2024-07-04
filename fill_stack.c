@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:50:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/01 14:22:12 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:43:09 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_stack	*fill_stack(char **result, int i, t_stack **stack_a)
 		number = ft_atoll(result[i]);
 		if (!check_min_max(number))
 		{
-			free_split(result);
+			if (split_status)
+				free_split(result);
 			free_and_exit(stack_a, NULL, 1);
 		}
 		new = ft_lstnew_int(number);
